@@ -1,0 +1,13 @@
+body{
+    background-color: #f5f5f5 !important;
+    font-family: 'Secular One', sans-serif !important;
+}
+.orange-text a{
+    color: #f9af4f !important;
+    font-family: 'Secular One', sans-serif;
+}
+
+.orange-button a{
+ background-color: #f9af4f !important;
+ border-color: #f9af4f !important;
+}
