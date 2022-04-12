@@ -38,7 +38,7 @@
                   <a class="nav-link" href="login.html">Login</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link" href="register.html">Register</a>
+                  <a class="nav-link" href="#">Register</a>
               </li>
           </ul>
       </div>
@@ -97,7 +97,9 @@
                     <div class="card-body">
                         <h5 class="card-title">Pizza 1</h5>
                         <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-dark">Go somewhere</a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                            Commannder
+                        </button>     
                     </div>
                 </div>
             </div>
@@ -150,11 +152,38 @@
                       <a href="#" class="btn btn-dark">Go somewhere</a>
                   </div>
               </div>
-              
-              <!-- pizza card for menu -->
-              
-              
 
+              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h5 class="modal-title" id="exampleModalLongTitle">Pizza 1</h5>
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                      </button>
+                    </div>
+                    <div class="modal-body">
+                        <img src="img/pizza1.png" alt="..." class="img-thumbnail">
+                    </div>
+                    <div class="modal-footer">
+                        <select class="custom-select" id="inputGroupSelect01">
+                            <option selected>Taille</option>
+                            <option value="1">M</option>
+                            <option value="2">L</option>
+                            <option value="3">XL</option>
+                          </select>
+                          <select class="custom-select" id="inputGroupSelect01">
+                            <option selected>Nombre</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                          </select>
+                      <button type="button" class="btn btn-secondary" data-dismiss="modal">ajouter au panier</button>
+                      <button type="button" class="btn btn-primary">commander</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
               
 
           </div>

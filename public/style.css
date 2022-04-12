@@ -6,6 +6,11 @@ body{
     color: #f9af4f !important;
     font-family: 'Secular One', sans-serif;
 }
+
+button{
+    background-color: #f9af4f !important;
+    border-color: #f9af4f !important;
+}
 .orange-text{
     color:#f9af4f !important;
 }
