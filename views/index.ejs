@@ -16,7 +16,7 @@
         <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
           <ul class="navbar-nav mr-auto">
               <li class="nav-item active">
-                  <a class="nav-link" href="/">Hooooome</a>
+                  <a class="nav-link" href="/">Home</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link" href="//codeply.com">Codeply</a>
@@ -78,7 +78,7 @@
     <div class="container orange-button">
         <div class="row">
             <div class="col-md-12">
-                <h1 class="text-center">Pizza Dog</h1>
+                <h1 class="text-center">Pizza Dog <%=message%></h1>
                 <p class="text-center">
                     Lorem ipsum dolor sit amet consectetur adipisicing elit.
                     Quisquam, quidem.
@@ -86,106 +86,67 @@
             </div>
         </div>
         <div class="row">
+          <div class="col-md-12">
+              <h2>Nos Entrées</h2>
+          </div>
+        </div>
+        <div class="row">
             <div class="col-md-12">
                 <h2>Nos Pizzas</h2>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-4">
+            <% for(var i=0; i<pizzaName.length; i++) {%>
+              <div class="col-md-4">
                 <div class="card pizzaMargin">
                     <img src="img/pizza1.png" class="card-img-top" alt="...">
                     <div class="card-body">
-                        <h5 class="card-title">Pizza 1</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                        <h5 class="card-title"><%=pizzaName[i].name%></h5>
+                        <p class="card-text"><%=pizzaName[i].description%></p>
+                        <p class="card-text">10$</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pizzaBox<%=pizzaName[i].pizza_id%>">
                             Commannder
                         </button>     
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-              <div class="card pizzaMargin">
-                  <img src="img/pizza1.png" class="card-img-top" alt="...">
-                  <div class="card-body">
-                      <h5 class="card-title">Pizza 1</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-dark">Go somewhere</a>
+            <div class="modal fade" id="pizzaBox<%=pizzaName[i].pizza_id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle"><%=pizzaName[i].name%></h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
                   </div>
-              </div>
-          </div>
-          <div class="col-md-4">
-            <div class="card pizzaMargin">
-                <img src="img/pizza1.png" class="card-img-top" alt="...">
-                <div class="card-body">
-                    <h5 class="card-title">Pizza 1</h5>
-                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                    <a href="#" class="btn btn-dark">Go somewhere</a>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4">
-          <div class="card pizzaMargin">
-              <img src="img/pizza2.jpg" class="card-img-top" alt="...">
-              <div class="card-body">
-                  <h5 class="card-title">Pizza 2</h5>
-                  <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                  <a href="#" class="btn btn-dark">Go somewhere</a>
-              </div>
-          </div>
-      </div>
-            <div class="col-md-4">
-                <div class="card pizzaMargin">
-                    <img src="img/pizza2.jpg" class="card-img-top" alt="...">
-                    <div class="card-body">
-                        <h5 class="card-title">Pizza 2</h5>
-                        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                        <a href="#" class="btn btn-dark">Go somewhere</a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-              <div class="card pizzaMargin">
-                  <img src="img/pizza2.jpg" class="card-img-top" alt="...">
-                  <div class="card-body">
-                      <h5 class="card-title">Pizza 2</h5>
-                      <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                      <a href="#" class="btn btn-dark">Go somewhere</a>
+                  <div class="modal-body">
+                      <img src="img/pizza1.png" alt="..." class="img-thumbnail">
                   </div>
-              </div>
-
-              <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered" role="document">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h5 class="modal-title" id="exampleModalLongTitle">Pizza 1</h5>
-                      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                      </button>
-                    </div>
-                    <div class="modal-body">
-                        <img src="img/pizza1.png" alt="..." class="img-thumbnail">
-                    </div>
-                    <div class="modal-footer">
+                  <div class="modal-footer">
+                      <select class="custom-select" id="inputGroupSelect01">
+                          <option selected>Taille</option>
+                          <option value="1">M</option>
+                          <option value="2">L</option>
+                          <option value="3">XL</option>
+                        </select>
                         <select class="custom-select" id="inputGroupSelect01">
-                            <option selected>Taille</option>
-                            <option value="1">M</option>
-                            <option value="2">L</option>
-                            <option value="3">XL</option>
-                          </select>
-                          <select class="custom-select" id="inputGroupSelect01">
-                            <option selected>Nombre</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                          </select>
-                      <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au panier</button>
-                      <button type="button" class="btn btn-primary ">commander</button>
-                    </div>
+                          <option selected>Nombre</option>
+                          <option value="1">1</option>
+                          <option value="2">2</option>
+                          <option value="3">3</option>
+                        </select>
+                    <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au panier</button>
+                    <button type="button" class="btn btn-primary ">commander</button>
                   </div>
                 </div>
               </div>
-              
-
+            </div>
+            <% } %>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+                <h2>Menu personnalisée</h2>
+            </div>
           </div>
 </body>
     

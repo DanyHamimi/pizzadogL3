@@ -20,11 +20,15 @@ const client = new Client({
 
 client.connect();
 
+let pizzaName;
+
+
 client.query('Select * from Pizza', (err, res) => {
     if(err) {
         console.log(err.stack);
     }else{
         console.log(res.rows);
+        pizzaName = res.rows;
     }
     client.end();
 })
@@ -53,7 +57,8 @@ app.use(express.static(__dirname + '/public'));
 //app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.get('/', (req,res) => {
-    res.render("index.ejs", {});
+    res.render("index.ejs", {message: "rayane teste", pizzaName: pizzaName});
+    
 })
 
 app.get('/login', (req,res) => {
