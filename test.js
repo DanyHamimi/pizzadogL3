@@ -8,6 +8,30 @@ const bcrypt = require('bcrypt');
 
 
 
+//postgresql connection
+const { Client } = require('pg');
+const client = new Client({
+    host: "localhost",
+    user: "postgres",
+    port: 5432,
+    password: "admin",
+    database: "pizzadog",
+});
+
+client.connect();
+
+client.query('Select * from Pizza', (err, res) => {
+    if(err) {
+        console.log(err.stack);
+    }else{
+        console.log(res.rows);
+    }
+    client.end();
+})
+
+
+
+
 var session = require('express-session')({
     secret: "my-secret",
     resave: true,
