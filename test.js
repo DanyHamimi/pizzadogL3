@@ -53,7 +53,11 @@ app.use(express.static(__dirname + '/public'));
 //app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.get('/', (req,res) => {
-    res.sendFile(`${__dirname}\views\index.ejs`)
+    res.render("index.ejs", {});
+})
+
+app.get('/login', (req,res) => {
+    res.render("login.ejs", {});
 })
 
 server.listen(port, () =>{
