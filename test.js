@@ -14,7 +14,7 @@ const client = new Client({
     host: "localhost",
     user: "postgres",
     port: 5432,
-    password: "admin",
+    password: "myPassword",
     database: "pizzadog",
 });
 
@@ -28,6 +28,11 @@ client.query('Select * from Pizza', (err, res) => {
     }
     client.end();
 })
+
+
+//ejs
+app.set('view engine', 'ejs');
+app.set('views', path.join('./views'));
 
 
 
@@ -48,7 +53,7 @@ app.use(express.static(__dirname + '/public'));
 //app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.get('/', (req,res) => {
-    res.sendFile(`${__dirname}\public\index.html`)
+    res.sendFile(`${__dirname}\views\index.ejs`)
 })
 
 server.listen(port, () =>{
