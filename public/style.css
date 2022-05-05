@@ -15,6 +15,14 @@ button{
     color:#f9af4f !important;
 }
 
+.sliderPizza select{
+    margin-bottom: 10px;
+}
+
+.sliderPizza img{
+    margin-bottom: 10px;
+}
+
 .orange-button a{
  background-color: #f9af4f !important;
  border-color: #f9af4f !important;

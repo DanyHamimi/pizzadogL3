@@ -27,12 +27,45 @@ client.connect();
 
 let pizzaName;
 
+let toppingPizz;
+
+let starterName;
+
+let boissonName;
+
 client.query('Select * from Pizza', (err, res) => {
     if(err) {
         console.log(err.stack);
     }else{
-        console.log(res.rows);
         pizzaName = res.rows;
+    }
+    //client.end(); // Ne pas end sinon plus possible de faire aucune demande
+})
+
+client.query('Select * from topping', (err, res) => {
+    if(err) {
+        console.log(err.stack);
+    }else{
+        toppingPizz = res.rows;
+    }
+    //client.end(); // Ne pas end sinon plus possible de faire aucune demande
+})
+
+
+client.query('Select * from boisson', (err, res) => {
+    if(err) {
+        console.log(err.stack);
+    }else{
+        boissonName = res.rows;
+    }
+    //client.end(); // Ne pas end sinon plus possible de faire aucune demande
+})
+
+client.query('Select * from starter', (err, res) => {
+    if(err) {
+        console.log(err.stack);
+    }else{
+        starterName = res.rows;
     }
     //client.end(); // Ne pas end sinon plus possible de faire aucune demande
 })
@@ -61,7 +94,8 @@ app.use(express.static(__dirname + '/public'));
 //app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.get('/', (req,res) => {
-    res.render("index.ejs", {message: "rayane teste", pizzaName: pizzaName});    
+    console.log(toppingPizz);
+    res.render("index.ejs", {message: "rayane teste", pizzaName: pizzaName, toppingPizz: toppingPizz, starterName: starterName, boissonName: boissonName});
 })
 
 app.get('/login', (req,res) => {

@@ -75,9 +75,6 @@
       <span class="sr-only">Next</span>
     </a>
   </div>
-
-
-
     <div class="container orange-button">
         <div class="row">
             <div class="col-md-12">
@@ -92,6 +89,54 @@
           <div class="col-md-12">
               <h2>Nos Entrées</h2>
           </div>
+        </div>
+        <div class="row">
+          <% for(var i=0; i<starterName.length; i++) {%>
+            <div class="col-md-4">
+              <div class="card pizzaMargin">
+                  <img src="img/salade1.jpg" class="card-img-top" alt="...">
+                  <div class="card-body">
+                      <h5 class="card-title"><%=starterName[i].name%></h5>
+                      <p class="card-text"><%=starterName[i].description%></p>
+                      <p class="card-text">10$</p>
+                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pizzaBox<%=starterName[i].starter_id%>">
+                          Commannder
+                      </button>     
+                  </div>
+              </div>
+          </div>
+          <div class="modal fade" id="pizzaBox<%=starterName[i].starter_id%>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle"><%=starterName[i].name%></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <img src="img/pizza1.png" alt="..." class="img-thumbnail">
+                </div>
+                <div class="modal-footer">
+                    <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Taille</option>
+                        <option value="1">M</option>
+                        <option value="2">L</option>
+                        <option value="3">XL</option>
+                      </select>
+                      <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Nombre</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                  <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au panier</button>
+                  <button type="button" class="btn btn-primary ">commander</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <% } %>
         </div>
         <div class="row">
             <div class="col-md-12">
@@ -147,9 +192,104 @@
             <% } %>
           </div>
           <div class="row">
-            <div class="col-md-12">
+            <div class="col-md-12 text-center">
                 <h2>Menu personnalisée</h2>
             </div>
           </div>
+          <div class="row justify-content-center">
+              <div class="col-md-5">
+                <div class="card pizzaMargin">
+                    <img src="img/pizzaPerso.png" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">Pizza perso</h5>
+                        <p class="card-text">Creez votre pizza</p>
+                        <p class="card-text">10-20$</p>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pizzaBoxP">
+                            Commannder
+                        </button>     
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade" id="pizzaBoxP" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+              <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLongTitle">Pizza Perso</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body sliderPizza">
+                      <img src="img/pizzaPerso.png" alt="..." class="img-thumbnail">
+                      <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Entrée</option>
+                        <% for(var i=0; i<starterName.length; i++) {%>
+                          <option value="<%=starterName[i].starter_id%>"><%=starterName[i].name%></option>
+                        <% } %>
+                      </select>
+                      <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Boisson</option>
+                        <% for(var i=0; i<boissonName.length; i++) {%>
+                          <option value="<%=boissonName[i].boisson_id%>"><%=boissonName[i].name%></option>
+                        <% } %>
+                      </select>
+                      <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Taille</option>
+                        <option value="1">M</option>
+                        <option value="2">L</option>
+                        <option value="3">XL</option>
+                      </select>
+                      <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Toping 1</option>
+                        <% for(var i=0; i<toppingPizz.length; i++) {%>
+                          <option value="<%=toppingPizz[i].topping_id%>"><%=toppingPizz[i].name%></option>
+                        <% } %>
+                      </select>
+                      <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Toping 2</option>
+                        <% for(var i=0; i<toppingPizz.length; i++) {%>
+                          <option value="<%=toppingPizz[i].topping_id%>"><%=toppingPizz[i].name%></option>
+                        <% } %>
+                      </select>
+                      <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Toping 3</option>
+                        <% for(var i=0; i<toppingPizz.length; i++) {%>
+                          <option value="<%=toppingPizz[i].topping_id%>"><%=toppingPizz[i].name%></option>
+                        <% } %>
+                      </select>
+                      <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Toping 4</option>
+                        <% for(var i=0; i<toppingPizz.length; i++) {%>
+                          <option value="<%=toppingPizz[i].topping_id%>"><%=toppingPizz[i].name%></option>
+                        <% } %>
+                      </select>
+                      <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Toping 5</option>
+                        <% for(var i=0; i<toppingPizz.length; i++) {%>
+                          <option value="<%=toppingPizz[i].topping_id%>"><%=toppingPizz[i].name%></option>
+                        <% } %>
+                      </select>
+                      <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Toping 6</option>
+                        <% for(var i=0; i<toppingPizz.length; i++) {%>
+                          <option value="<%=toppingPizz[i].topping_id%>"><%=toppingPizz[i].name%></option>
+                        <% } %>
+                      </select>
+                      <select class="custom-select" id="inputGroupSelect01">
+                        <option selected>Nombre</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                      </select>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au panier</button>
+                    <button type="button" class="btn btn-primary ">commander</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
 </body>
     
