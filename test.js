@@ -65,14 +65,12 @@ app.get('/', (req,res) => {
 })
 
 app.get('/login', (req,res) => {
-    res.render("login.ejs", {});
+    res.render("login.ejs", {tried : "0"});
 })
 
+
 app.get('/register', (req,res) => {
-    res.render("register.ejs", {});
-})
-app.get('/registerB', (req,res) => {
-    res.render("registerB.ejs", {});
+    res.render("register.ejs", {tried : "0"});
 })
 
 app.get('/basket', (req,res) => {
@@ -93,7 +91,7 @@ app.post('/register', function(request, response) {
             }else{
                 console.log(res.rows.length);
                 if(res.rows.length > 0){
-                    response.redirect('/registerB');//Changer la page de register en ejs pr afficher le message d err
+                    response.render("register.ejs", {tried : "1"});
                 } else {
                     bcrypt.hash(password, 10, function(err, hash) {
                         let token = Array(100).fill().map(()=>"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".charAt(Math.random()*62)).join(""); // TODO : Vérifier que le token est unique
@@ -132,7 +130,7 @@ app.post('/login', function(request, response) {
                             response.redirect('/');
                             console.log('token: ' + request.session.token+' is logged in');
                         } else {
-                            response.redirect('/login');
+                            response.render("login.ejs", {tried : "1"});
                         }
                     });
                 } else {
