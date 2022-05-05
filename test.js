@@ -61,8 +61,7 @@ app.use(express.static(__dirname + '/public'));
 //app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.get('/', (req,res) => {
-    res.render("index.ejs", {message: "rayane teste", pizzaName: pizzaName});
-    
+    res.render("index.ejs", {message: "rayane teste", pizzaName: pizzaName});    
 })
 
 app.get('/login', (req,res) => {
@@ -74,6 +73,10 @@ app.get('/register', (req,res) => {
 })
 app.get('/registerB', (req,res) => {
     res.render("registerB.ejs", {});
+})
+
+app.get('/basket', (req,res) => {
+    res.render("basket.ejs", {});
 })
 
 app.post('/register', function(request, response) {
@@ -96,7 +99,7 @@ app.post('/register', function(request, response) {
                         let token = Array(100).fill().map(()=>"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".charAt(Math.random()*62)).join(""); // TODO : Vérifier que le token est unique
                         client.query("INSERT INTO users VALUES (1,'"+name+"','"+surename+"','"+email+"',NULL,NULL,'"+token+"','"+hash+"')", (err, res) => { // TODO : Changer uniqueID pr autoincrement
                             if(err) {
-                                console.log(error);
+                                console.log(err.stack);
                             } else {
                                 response.redirect('/login');
                             }
@@ -118,9 +121,8 @@ app.post('/login', function(request, response) {
                 console.log(err.stack);
             }else{
                 if(res.rows.length > 0){
-                    console.log(res.rows[0].password);
+                    //console.log(res.rows[0].password);
                     let token = res.rows[0].token;
-                    //console.log(res.rows[0].name);
 
                     bcrypt.compare(password, res.rows[0].password, function(err, res) {
                         if(res == true){
