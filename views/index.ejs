@@ -183,7 +183,7 @@
                           <option value="2">2</option>
                           <option value="3">3</option>
                         </select>
-                    <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au panier</button>
+                    <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal"id="<%=pizzaName[i].name%>" onclick="AddBasket('<%=pizzaName[i].name%>','taille<%=i%>','nombre<%=i%>')"> ajouter au panier</button>
                     <button type="button" class="btn btn-primary ">commander</button>
                   </div>
                 </div>
@@ -290,6 +290,41 @@
               </div>
             </div>
           </div>
+          <script>
+            let basketNUM = document.querySelector('#basketNUM');
+            basketNUM.innerHTML = ((getCookie("name")).split(",").length/2).toString();
+            let amount;
+            function AddBasket(a,b,c) {
+              let cookie = getCookie("name");
+              if(cookie != null){
+                let amount = (cookie.split(",")).length;
+                console.log(amount);
+              }
+              selectElement = document.querySelector('#'+b);
+              TaillePizza = selectElement.options[selectElement.selectedIndex].value;
+              selectElement = document.querySelector('#'+c);
+              Qtepizza = selectElement.options[selectElement.selectedIndex].value;
+              //console.log(a+" ajouté au panier "+"Taille "+TaillePizza+" Qté "+Qtepizza);
+              //create double dimension array
+              let tab = new Array(2);
+              tab[0] = new Array();
+              tab[1] = new Array();
+              if(cookie != null){
+                console.log(amount);
+                for(let i = 0;i<(getCookie("name")).split(",").length;i = i+2){
+                  tab[0].push(cookie.split(",")[i]);
+                  tab[1].push(cookie.split(",")[i+1]);
+                }
+              }
+              tab[0].push(a);
+              tab[1].push('1');
+              //console.log(tab);
+              document.cookie = "name="+tab+"";
+              //change value of basketNUM on html
+              let basketNUM = document.querySelector('#basketNUM');
+              basketNUM.innerHTML = ((getCookie("name")).split(",").length/2).toString();
+            }
+            </script>
 
 </body>
     
