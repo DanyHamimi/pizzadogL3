@@ -33,6 +33,8 @@ let starterName;
 
 let boissonName;
 
+let commande;
+
 client.query('Select * from Pizza', (err, res) => {
     if(err) {
         console.log(err.stack);
@@ -109,6 +111,23 @@ app.get('/register', (req,res) => {
 
 app.get('/basket', (req,res) => {
     res.render("basket.ejs", {});
+})
+
+app.get('/livreur', (req,res) => {
+    let prom = new Promise((resolve, reject) => {
+        client.query('Select * from commande', (err, res) => {
+            if(err) {
+                console.log(err.stack);
+            }else{
+                commande = res.rows;
+            }
+            resolve(commande);
+        })
+    })
+    prom.then(() => {  
+    console.log(commande);
+    res.render("livreur.ejs", {commande: commande});
+    })
 })
 
 app.post('/register', function(request, response) {
