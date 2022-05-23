@@ -253,7 +253,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="modal fade" id="pizzaBoxP" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
@@ -385,6 +385,21 @@
         console.log(total);
 
         PizzaPrice.innerHTML = total.toString() + "€";
+      }
+
+      function AddBasket(i) {
+
+        let cookie = getCookie("name");
+
+        if (cookie != null) {
+          let amount = (cookie.split(",")).length;
+          console.log(amount);
+        }
+
+        let basketNUM = document.querySelector('#basketNUM');
+        var AmountinBasket = document.getElementById("nombre" + i).value;
+        var newN = parseInt(basketNUM.innerHTML) + parseInt(AmountinBasket);
+        basketNUM.innerHTML = newN;
       }
       /*function AddBasket(a, b, c) {
       let cookie = getCookie("name");
