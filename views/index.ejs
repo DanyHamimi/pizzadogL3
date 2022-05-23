@@ -209,7 +209,7 @@
                   <option value="3">3</option>
                 </select>
                 <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal"
-                  id="<%=pizzaName[i].name%>" onclick="AddBasket('<%=i%>')"> ajouter au
+                  id="<%=pizzaName[i].name%>" onclick="AddBasket('<%=i%>','<%=pizzaName[i].name%>','3')"> ajouter au
                   panier</button>
                 <button type="button" class="btn btn-primary ">commander</button>
                 <p id="priceP<%=i%>"> 10€</p>
@@ -355,12 +355,12 @@
       basketNUM = 0;
       //basketNUM.innerHTML = ((getCookie("name")).split(",").length / 2).toString();
       let amount;
-      function AddBasket(a, b, c) {
+      /*function AddBasket(a, b, c) {
         console.log(c);
         selectElement = document.querySelector('#nombre0');
         amount = selectElement.value;
         console.log(amount);
-      }
+      }*/
       function changePrice(i) {
         /* var price = document.getElementById("priceC" + i).innerHTML;
          var ValPrice = price.split("€");
@@ -386,12 +386,14 @@
         PizzaPrice.innerHTML = total.toString() + "€";
       }
 
-      function AddBasket(i) {
+      function AddBasket(i, artype, dadadad) {
 
-        let cookie = getCookie("name");
+        let cookie = getCookie("basket");
+
+        let amount = 0;
 
         if (cookie != null) {
-          let amount = (cookie.split(",")).length;
+          amount = (cookie.split("/")).length;
           console.log(amount);
         }
 
@@ -399,6 +401,47 @@
         var AmountinBasket = document.getElementById("nombre" + i).value;
         var newN = parseInt(basketNUM.innerHTML) + parseInt(AmountinBasket);
         basketNUM.innerHTML = newN;
+        let PizzaPrice = document.querySelector('#priceP' + i);
+        let ValPrice = PizzaPrice.innerHTML;
+        let ValPrice2 = ValPrice.split("€");
+
+        if (cookie == null) {
+          cookie = "";
+        }
+        let AddCookie = cookie;
+        let separate = "/";
+        let ArticleNum;
+        if (amount == 0) {
+          ArticleNum = amount + 1;
+        }
+        else {
+          ArticleNum = amount;
+        }
+        let ArticleType = artype;
+        let IdOfProduct = i;
+        let arID = dadadad;
+        let qteOrdered = AmountinBasket;
+
+        //console.log(cookie + ";" + AddCookie + "/" + ArticleNum + "/" + ArticleType + "/" + IdOfProduct + "/" + qteOrdered);
+        //fill a tab with those values
+        let tab;
+        if (cookie = "") {
+          tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, ValPrice2[0], separate];
+        }
+        else {
+          tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, ValPrice2[0], separate];
+        }
+
+        console.log(tab);
+        document.cookie = "basket=" + tab + ";secure";
+
+        cookie = getCookie("basket");
+
+        console.log(cookie.split("/").length);
+
+
+        //document.cookie = cookie + ";" + AddCookie + "/" + ArticleNum + "/" + ArticleType + "/" + IdOfProduct + "/" + qteOrdered;
+
       }
       /*function AddBasket(a, b, c) {
       let cookie = getCookie("name");

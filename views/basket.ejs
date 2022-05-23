@@ -77,49 +77,23 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <td>Pizza</td>
-                            <td>£10.00</td>
-                            <td>1</td>
-                            <td>£10.00</td>
-                            <td><a href="#" class="btn btn-danger">X</a></td>
-                        </tr>
-                        <tr>
-                            <td>Pizza</td>
-                            <td>£10.00</td>
-                            <td>1</td>
-                            <td>£10.00</td>
-                            <!--cross to delete the order-->
-                            <td><a href="#" class="btn btn-danger">X</a></td>
-                        </tr>
-                        <tr>
-                            <td>Pizza</td>
-                            <td>£10.00</td>
-                            <td>1</td>
-                            <td>£10.00</td>
-                            <td><a href="#" class="btn btn-danger">X</a></td>
-                        </tr>
-                        <tr>
-                            <td>Pizza</td>
-                            <td>£10.00</td>
-                            <td>1</td>
-                            <td>£10.00</td>
-                            <td><a href="#" class="btn btn-danger">X</a></td>
-                        </tr>
-                        <tr>
-                            <td>Pizza</td>
-                            <td>£10.00</td>
-                            <td>1</td>
-                            <td>£10.00</td>
-                            <td><a href="#" class="btn btn-danger">X</a></td>
-                        </tr>
-                        <tr>
-                            <td>Pizza</td>
-                            <td>£10.00</td>
-                            <td>1</td>
-                            <td>£10.00</td>
-                            <td><a href="#" class="btn btn-danger">X</a></td>
-                        </tr>
+                        <% for (var i=0; i < basket.length-1; i=i+7) { %>
+                            <tr>
+                                <td>
+                                    <%=basket[i+2] %>
+                                </td>
+                                <td>
+                                    <%=basket[i+6] /basket[i+5] %>€
+                                </td>
+                                <td>
+                                    <%=basket[i+5] %>
+                                </td>
+                                <td>
+                                    <%=basket[i+6] %>€
+                                </td>
+                                <td><button type="button" class="btn btn-danger">delete</button></td>
+                            </tr>
+                            <%}%>
                     </tbody>
                 </table>
                 <!-- command button-->
