@@ -47,7 +47,7 @@
         </li>
         <li class="nav-item">
           <a href="/basket" class="nav-link"><img src="img/basket.png" width="27px"> <span class="badge badge-secondary"
-              style="background-color: orange;">0</span></a>
+              style="background-color: orange;" id="basketNUM">0</span></a>
         </li>
       </ul>
     </div>
@@ -209,8 +209,7 @@
                   <option value="3">3</option>
                 </select>
                 <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal"
-                  id="<%=pizzaName[i].name%>"
-                  onclick="AddBasket('<%=pizzaName[i].name%>','taille<%=i%>','nombre<%=i%>')"> ajouter au
+                  id="<%=pizzaName[i].name%>" onclick="AddBasket('<%=i%>')"> ajouter au
                   panier</button>
                 <button type="button" class="btn btn-primary ">commander</button>
                 <p id="priceP<%=i%>"> 10€</p>
