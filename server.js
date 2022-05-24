@@ -33,6 +33,8 @@ let starterName;
 
 let boissonName;
 
+let menuName;
+
 client.query('Select * from Pizza', (err, res) => {
     if(err) {
         console.log(err.stack);

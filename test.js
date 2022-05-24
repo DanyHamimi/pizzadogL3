@@ -36,6 +36,8 @@ let starterName;
 
 let boissonName;
 
+let menuName;
+
 let commande;
 
 client.query('Select * from Pizza', (err, res) => {
@@ -100,7 +102,21 @@ app.use(express.static(__dirname + '/public'));
 
 app.get('/', (req, res) => {
     console.log(toppingPizz);
-    res.render("index.ejs", { message: "rayane teste", pizzaName: pizzaName, toppingPizz: toppingPizz, starterName: starterName, boissonName: boissonName });
+    let prom = new Promise((resolve, reject) => {
+        client.query('Select * from menu', (err, res) => {
+            if (err) {
+                console.log(err.stack);
+            } else {
+                menuName = res.rows;
+            }
+            resolve(menuName);
+        })
+    })
+    prom.then(() => {
+        console.log(menuName);
+        res.render("index.ejs", { message: "rayane teste", pizzaName: pizzaName, toppingPizz: toppingPizz, starterName: starterName, boissonName: boissonName, menuName: menuName});
+    })
+    
 })
 
 app.get('/login', (req, res) => {

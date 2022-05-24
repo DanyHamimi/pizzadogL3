@@ -131,7 +131,7 @@
                 </button>
               </div>
               <div class="modal-body">
-                <img src="img/pizza1.png" alt="..." class="img-thumbnail">
+                <img src="img/salade1.jpg" alt="..." class="img-thumbnail">
               </div>
               <div class="modal-footer">
                 <select class="custom-select" id="inputGroupSelect01">
@@ -148,7 +148,58 @@
                 </select>
                 <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au
                   panier</button>
-                <button type="button" class="btn btn-primary ">commander</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Nos Boisson</h2>
+      </div>
+    </div>
+    <div class="row">
+      <% for(var i=0; i<boissonName.length; i++) {%>
+        <div class="col-md-4">
+          <div class="card pizzaMargin">
+            <img src="img/boisson.jpg"" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%=boissonName[i].name%>
+              </h5>
+              <p class="card-text">10$</p>
+              <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#starterBox<%=boissonName[i].starter_id%>">
+                Commannder
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="starterBox<%=boissonName[i].starter_id%>" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                  <%=boissonName[i].name%>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img src="img/boisson.jpg" alt="..." class="img-thumbnail">
+              </div>
+              <div class="modal-footer">
+                <select class="custom-select" id="inputGroupSelect01">
+                  <option selected>Nombre</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au
+                  panier</button>
               </div>
             </div>
           </div>
@@ -211,7 +262,64 @@
                 <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal"
                   id="<%=pizzaName[i].name%>" onclick="AddBasket('<%=i%>','<%=pizzaName[i].name%>','3')"> ajouter au
                   panier</button>
-                <button type="button" class="btn btn-primary ">commander</button>
+                <p id="priceP<%=i%>"> 10€</p>
+                <p id="priceC<%=i%>" style="display:none;"> 10€</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <% } %>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <h2>Nos Menu</h2>
+      </div>
+    </div>
+    <div class="row">
+      <% for(var i=0; i<menuName.length; i++) {%>
+        <div class="col-md-4">
+          <div class="card pizzaMargin">
+            <img src="img/menu.webp" class="card-img-top" alt="...">
+            <div class="card-body">
+              <h5 class="card-title">
+                <%=menuName[i].nom%>
+              </h5>
+              <p class="card-text">
+                <%=menuName[i].description%>
+              </p>
+              <p class="card-text">A partir de 10€</p>
+              <button type="button" class="btn btn-primary" data-toggle="modal"
+                data-target="#menuName<%=menuName[i].menu_id%>">
+                Commannder
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="modal fade" id="menuName<%=menuName[i].menu_id%>" tabindex="-1" role="dialog"
+          aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+          <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">
+                  <%=menuName[i].nom%>
+                </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                <img src="img/pizza1.png" alt="..." class="img-thumbnail">
+              </div>
+              <div class="modal-footer">
+                <select class="custom-select" id="nombre<%=i%>" onclick="changePrice('<%=i%>')">
+                  <option selected value="1">Nombre</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
+                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal"
+                  id="<%=pizzaName[i].name%>" onclick="AddBasket('<%=i%>','<%=pizzaName[i].name%>','3')"> ajouter au
+                  panier</button>
                 <p id="priceP<%=i%>"> 10€</p>
                 <p id="priceC<%=i%>" style="display:none;"> 10€</p>
               </div>
@@ -344,7 +452,6 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au panier</button>
-              <button type="button" class="btn btn-primary ">commander</button>
             </div>
           </div>
         </div>
