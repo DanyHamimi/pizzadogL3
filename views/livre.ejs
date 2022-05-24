@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -48,43 +49,7 @@
       </nav>
 </head>
 <body>
-    <!--table that displays all piuzza commands-->
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-center">Livreur</h1>
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th>Commande</th>
-                            <th>Client</th>
-                            <th>Adresse</th>
-                            <th>Prix</th>
-                            <th>Status</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for(var i=0; i<commande.length; i++) {%>
-                        <tr>
-                            <td><%=commande[i].commande_id%> </td>
-                            <td><%=commande[i].name_client%> </td>
-                            <td><%=commande[i].adresse%> </td>
-                            <td><%=commande[i].commande_id%> </td>
-                            <td><% if(commande[i].status == 1) {%>
-                                    pas livrée
-                                <% }else{%>
-                                    livrée
-                                <% } %> </td>
-                            <td>
-                                <a href="<%= '/livreur/' + commande[i].commande_id %>" class="btn btn-success">Prendre la commande</a>
-                            </td>
-                        </tr>
-                        <% } %>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+    
+<h1>Vous avez pris la commande numero: <%= commande_id%></h1>
 
 </body>

@@ -154,7 +154,7 @@ app.get('/order', (req, res) => {
     res.render("order.ejs", { basket: bisElmns });
 })
 
-app.get('/livreur', (req, res) => {
+function livreur(res){
     let prom = new Promise((resolve, reject) => {
         client.query('Select * from commande', (err, res) => {
             if (err) {
@@ -166,9 +166,33 @@ app.get('/livreur', (req, res) => {
         })
     })
     prom.then(() => {
-        console.log(commande);
+        //console.log(commande);
         res.render("livreur.ejs", { commande: commande });
     })
+}
+
+app.get('/livreur', (req, res) => {
+    livreur(res);
+})
+app.get('/livreur/:id', (req, res) => {
+    var id_command = 0;
+    var sqlLine = "UPDATE commande SET status = 0 WHERE commande_id = " + req.params.id;
+    let prom = new Promise((resolve, reject) => {
+        client.query(sqlLine, (err, res) => {
+            if (err) {
+                console.log(err.stack);
+            } else {
+                console.log(sqlLine);
+                resolve(res);
+            }
+        })    
+    })
+    prom.then(() => {
+            console.log('coucou');
+            //res.render("/livreur");
+            res.send('<script>window.location.href="/livreur";</script>');
+        
+  })
 })
 
 app.post('/register', function (request, response) {
