@@ -207,7 +207,7 @@ app.get('/order', (req, res) => {
 
 function livreur(res){
     let prom = new Promise((resolve, reject) => {
-        client.query('Select * from commande', (err, res) => {
+        client.query('Select * from commande where status !=2', (err, res) => {
             if (err) {
                 console.log(err.stack);
             } else {
@@ -324,7 +324,7 @@ app.post('/orderConfirm', function (request, response){
                     console.log('coucou');
             })
         }
-            response.send('<script>window.location.href="/";</script>');
+            response.send('<script>window.location.href="/etat/'+(resi.rows[0].max+1)+'";</script>');
         })
                 
                 resolve(resi.rows[0].max);
