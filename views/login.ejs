@@ -30,7 +30,7 @@
     <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="nav-link" href="/">Home</a>
+          <a class="nav-link" href="/">Accueil</a>
         </li>
       </ul>
     </div>
@@ -43,10 +43,10 @@
     <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
       <ul class="navbar-nav ml-auto">
         <li class="nav-item">
-          <a class="nav-link" href="#">Login</a>
+          <a class="nav-link" href="#">Se connecter</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="/register">Register</a>
+          <a class="nav-link" href="/register">S'inscrire</a>
         </li>
       </ul>
     </div>
@@ -59,21 +59,16 @@
   <div class="text-center test">
     <form class="form-signin" action="/login" method="post">
       <img class="mb-4" src="img/chien.svg" alt="" width="72" height="72">
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-      <label for="inputEmail" class="sr-only">Email address</label>
-      <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus
-        name="mail">
-      <label for="inputPassword" class="sr-only">Password</label>
-      <input type="password" id="inputPassword" class="form-control" placeholder="Password" required name="password">
+      <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
+      <label for="inputEmail" class="sr-only">Email</label>
+      <input type="email" id="inputEmail" class="form-control" placeholder="Email" required autofocus name="mail">
+      <label for="inputPassword" class="sr-only">Mot de passe</label>
+      <input type="password" id="inputPassword" class="form-control" placeholder="Mot de passe" required
+        name="password">
       <% if (tried==1){%>
         <p class="text-danger">Invalid email or password</p>
         <% } %>
-          <div class="checkbox mb-3">
-            <label>
-              <input type="checkbox" value="remember-me"> Remember me
-            </label>
-          </div>
-          <button class="btn btn-lg btn-primary btn-block orange-button1" type="submit">Sign in</button>
+          <button class="btn btn-lg btn-primary btn-block orange-button1" type="submit">Se connecter</button>
           <p class="mt-5 mb-3 text-muted">&copy; 2021-2022</p>
     </form>
   </div>
