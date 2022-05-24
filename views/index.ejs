@@ -315,17 +315,17 @@
                 <img src="img/pizza1.png" alt="..." class="img-thumbnail">
               </div>
               <div class="modal-footer">
-                <select class="custom-select" id="nombre<%=i%>" onclick="changePrice('<%=i%>')">
+                <select class="custom-select" id="NbMenu<%=i%>" onclick="changePriceMenu('<%=i%>')">
                   <option selected value="1">Quantité</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
                 <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal"
-                  id="<%=pizzaName[i].name%>" onclick="AddBasket('<%=i%>','<%=pizzaName[i].name%>','3')"> ajouter au
+                  id="<%=pizzaName[i].name%>" onclick="AddBasket('<%=i%>','<%=menuName[i].name%>')"> ajouter au
                   panier</button>
-                <p id="priceP<%=i%>"> 10€</p>
-                <p id="priceC<%=i%>" style="display:none;"> 10€</p>
+                <p id="priceP<%=i%>"> 15€</p>
+                <p id="priceC<%=i%>" style="display:none;"> 15€</p>
               </div>
             </div>
           </div>
@@ -507,7 +507,7 @@
 
         } else {
           basketNUM.innerHTML = parseInt(total);
-          document.cookie = "qtebasket=" + totalval + ";secure";
+          document.cookie = "qtebasket=" + parseInt(valueSize) + ";secure";
         }
         let cookie = getCookie("basket");
         let amount = 0;
@@ -528,7 +528,7 @@
         }
         let ArticleType = nameDrink;
         let IdOfProduct = i;
-        let arID = 3;
+        let arID = 1;
         let qteOrdered = parseInt(total);
         let tab;
         let size = -1;
@@ -553,11 +553,11 @@
         if (parseInt(getCookie("qtebasket")) > 0) {
           basketNUM.innerHTML = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
           var totalval = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
-          document.cookie = "qtebasket=" + totalval + ";secure";
+          document.cookie = "qtebasket=" + parseInt(totalval) + ";secure";
 
         } else {
-          basketNUM.innerHTML = parseInt(valueSize);
-          document.cookie = "qtebasket=" + totalval + ";secure";
+          basketNUM.innerHTML = valueSize;
+          document.cookie = "qtebasket=" + parseInt(valueSize) + ";secure";
         }
         let cookie = getCookie("basket");
         let amount = 0;
