@@ -130,6 +130,7 @@ app.get('/register', (req, res) => {
     res.render("register.ejs", { tried: "0" });
 })
 
+let command_info;
 
 app.get('/etat/:id', (req, res) => {
     var sqlLine = "Select * from commande where commande_id = " + req.params.id;
@@ -146,13 +147,29 @@ app.get('/etat/:id', (req, res) => {
     })
     prom.then(() => {
             console.log('coucou');
-            res.send('<script>window.location.href="/etat";</script>');
   })
+  var sqlLine2 = "Select * from commande_ligne where commande_id = " + req.params.id;
+  let prom2 = new Promise((resolve, reject) => {
+    client.query(sqlLine2, (err, res) => {
+        if (err) {
+            console.log(err.stack);
+        } else {
+            console.log(sqlLine2);
+            command_info=res.rows;
+            resolve(res);
+        }
+    })    
+    })
+    prom2.then(() => {
+        console.log('coucou');
+        res.send('<script>window.location.href="/etat";</script>');
+    })
     //res.render("etat.ejs");
 })
 
 app.get('/etat', (req, res) => {
-    console.log(fin);
+    let pizza ;
+    let boisson;
     res.render("etat.ejs" , { fin: fin });
     
 })
@@ -164,11 +181,18 @@ app.get('/basket', (req, res) => {
     //console.log(elmns.join(''));
     //regex '/' elmns
     var bisElmns = elmns.join('').split('/');
-    console.log(bisElmns);
     bisElmns = elmns.join('').split(',');
-    console.log(bisElmns);
     res.render("basket.ejs", { basket: bisElmns });
 })
+
+function getCookiePers(req){
+    const elmns = [];
+    elmns.push(req.cookies.basket);
+    //console.log(elmns.join(''));
+    //regex '/' elmns
+    var bisElmns = elmns.join('').split('/');
+    return bisElmns;
+}
 
 app.get('/order', (req, res) => {
     //console.log('Cookies: ', req.cookies.basket);
@@ -177,9 +201,7 @@ app.get('/order', (req, res) => {
     //console.log(elmns.join(''));
     //regex '/' elmns
     var bisElmns = elmns.join('').split('/');
-    console.log(bisElmns);
     bisElmns = elmns.join('').split(',');
-    console.log(bisElmns);
     res.render("order.ejs", { basket: bisElmns });
 })
 
@@ -197,6 +219,26 @@ function livreur(res){
     prom.then(() => {
         //console.log(commande);
         res.render("livreur.ejs", { commande: commande });
+    })
+}
+
+let test_pers;
+
+function get_id_commande(res){
+    let retur;
+    let prom = new Promise((resolve, reject) => {
+        client.query('Select MAX(commande_id) from commande', (err, res) => {
+            if (err) {
+                console.log(err.stack);
+            } else {
+                retur = res.rows;
+            }
+            resolve(retur);
+        })
+    })
+    prom.then(() => {
+        console.log(retur);
+        test_pers = retur;
     })
 }
 
@@ -246,23 +288,56 @@ app.get('/livre/:id', (req, res) => {
 })
 
 app.post('/orderConfirm', function (request, response){
-    console.log(request.body);
-    var sqlLine = "INSERT INTO commande (name_client, adresse, status, prix) VALUES ('" + request.body.Nom + "','" + request.body.Adresse +"','"+0+"', '"+ 10 +"')";
-    let prom = new Promise((resolve, reject) => {
-        client.query(sqlLine, (err, res) => {
+    let prom2 = new Promise((resolve, reject) => {
+        client.query('Select MAX(commande_id) from commande', (err, resi) => {
             if (err) {
                 console.log(err.stack);
             } else {
-                console.log(sqlLine);
-                resolve(res);
+                console.log(resi.rows[0].max);
+        var sqlLine = "INSERT INTO commande (name_client, adresse, status, prix) VALUES ('" + request.body.Nom + "','" + request.body.Adresse +"','"+0+"', '"+ 10 +"')";
+        let danydan = getCookiePers(request);
+        let prom = new Promise((resolve, reject) => {
+            client.query(sqlLine, (err, res) => {
+                if (err) {
+                    console.log(err.stack);
+                } else {
+                    console.log(sqlLine);
+                    resolve(res);
+                }
+            })    
+        })
+        prom.then(() => {
+            console.log('coucou');
+            for (var i=0; i < danydan.length-1; i=i+8) {
+                var newsqlLine = "INSERT INTO commande_ligne values ('" + danydan[i+1] + "','" + danydan[i+7] + "','" + (resi.rows[0].max+1)  + "','" + danydan[i+3] + "','" + danydan[i+4] + "','" + danydan[i+5] + "')";
+                let prom3 = new Promise((resolve, reject) => {
+                    client.query(newsqlLine, (err, res) => {
+                        if (err) {
+                            console.log(err.stack);
+                        } else {
+                            console.log(newsqlLine);
+                            resolve(res);
+                        }
+                    })    
+                })
+            prom3.then(() => {
+                    console.log('coucou');
+            })
+        }
+            response.send('<script>window.location.href="/";</script>');
+        })
+                
+                resolve(resi.rows[0].max);
+
             }
-        })    
+            
+        })
     })
-    prom.then(() => {
-        console.log('coucou');
-        //res.render("/livreur");
-        response.send('<script>window.location.href="/";</script>');
+    prom2.then((val) => {
+        console.log("ici");
     })
+    //get_id_commande(response);
+    
 });
 
 app.post('/register', function (request, response) {

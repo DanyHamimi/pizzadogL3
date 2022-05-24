@@ -65,29 +65,5 @@
         <h3>Votre commande est annulée</h3>
         <% } %>
 
-        <h3>Recap de votre commande :</h3>
-
-        <!--table to recap the command-->
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Nom</th>
-              <th scope="col">Prix</th>
-              <th scope="col">Quantité</th>
-              <th scope="col">Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% for(var i = 0; i < fin.length; i++){ %>
-            <tr>
-              <th scope="row"><%=i+1%></th>
-              <td><%=fin[i].name_pizza%></td>
-              <td><%=fin[i].price%></td>
-              <td><%=fin[i].quantity%></td>
-              <td><%=fin[i].price*fin[i].quantity%></td>
-            </tr>
-            <% } %>
-          </tbody>
         
   </body>
