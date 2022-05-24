@@ -69,7 +69,6 @@
                             <th>Prix</th>
                             <th>Quantité</th>
                             <th>Total</th>
-                            <th>Supprimer</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -87,7 +86,7 @@
                                 <td>
                                     <%=basket[i+6] %>€
                                 </td>
-                                <td><button type="button" class="btn btn-danger">Supprimer</button></td>
+
                             </tr>
                             <%}%>
                     </tbody>
@@ -96,6 +95,8 @@
                 <div class="row">
                     <div class="col-md-12">
                         <a href="/order" class="btn btn-primary">Commander</a>
+                        <td><button type="button" class="btn btn-danger" onclick="deleteB()">Vider le
+                                panier</button></td>
                     </div>
                 </div>
             </div>
@@ -106,5 +107,9 @@
     console.log(getCookie("qtebasket"));
     if (parseInt(getCookie("qtebasket")) > 0) {
         basketNUM.innerHTML = getCookie("qtebasket");
+    }
+    function deleteB() {
+        javascript: (function () { document.cookie.split(";").forEach(function (c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); })();
+        location.reload();
     }
 </script>

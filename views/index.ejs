@@ -160,7 +160,7 @@
               <h5 class="card-title">
                 <%=boissonName[i].name%>
               </h5>
-              <p class="card-text">10$</p>
+              <p class="card-text">1€</p>
               <button type="button" class="btn btn-primary" data-toggle="modal"
                 data-target="#starterBox<%=boissonName[i].starter_id%>">
                 Commannder
@@ -327,374 +327,454 @@
         <h2>Menu/Pizza personnalisée</h2>
       </div>
     </div>
-    <div class="row justify-content-center">
-      <div class="col-md-5">
-        <div class="card pizzaMargin">
-          <img src="img/pizzaPerso.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Pizza perso</h5>
-            <p class="card-text">Creez votre pizza</p>
-            <p class="card-text">10-20$</p>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pizzaBoxP">
-              Commannder
-            </button>
-          </div>
+    <div class="col-md-10">
+      <div class="card pizzaMargin">
+        <img src="img/pizzaPerso.png" class="card-img-top" alt="...">
+        <div class="card-body">
+          <h5 class="card-title">Pizza perso</h5>
+          <p class="card-text">Creez votre pizza</p>
+          <p class="card-text">A partir de 10€</p>
+          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pizzaBoxP">
+            Commannder
+          </button>
         </div>
       </div>
-      <div class="col-md-5">
-        <div class="card pizzaMargin">
-          <img src="img/pizzaPerso.png" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">Pizza perso</h5>
-            <p class="card-text">Creez votre pizza</p>
-            <p class="card-text">10-20$</p>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pizzaBoxP">
-              Commannder
-            </button>
-          </div>
-        </div>
-      </div>
+    </div>
 
-      <div class="modal fade" id="pizzaBoxP" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
-        aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="exampleModalLongTitle">Pizza Perso</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>
-            <div class="modal-body sliderPizza">
-              <img src="img/pizzaPerso.png" alt="..." class="img-thumbnail">
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Taille</option>
-                <option value="1">M</option>
-                <option value="2">L</option>
-                <option value="3">XL</option>
-              </select>
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Toping 1</option>
-                <% for(var i=0; i<toppingPizz.length; i++) {%>
-                  <option value="<%=toppingPizz[i].topping_id%>">
-                    <%=toppingPizz[i].name%>
-                  </option>
-                  <% } %>
-              </select>
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Toping 2</option>
-                <% for(var i=0; i<toppingPizz.length; i++) {%>
-                  <option value="<%=toppingPizz[i].topping_id%>">
-                    <%=toppingPizz[i].name%>
-                  </option>
-                  <% } %>
-              </select>
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Toping 3</option>
-                <% for(var i=0; i<toppingPizz.length; i++) {%>
-                  <option value="<%=toppingPizz[i].topping_id%>">
-                    <%=toppingPizz[i].name%>
-                  </option>
-                  <% } %>
-              </select>
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Toping 4</option>
-                <% for(var i=0; i<toppingPizz.length; i++) {%>
-                  <option value="<%=toppingPizz[i].topping_id%>">
-                    <%=toppingPizz[i].name%>
-                  </option>
-                  <% } %>
-              </select>
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Toping 5</option>
-                <% for(var i=0; i<toppingPizz.length; i++) {%>
-                  <option value="<%=toppingPizz[i].topping_id%>">
-                    <%=toppingPizz[i].name%>
-                  </option>
-                  <% } %>
-              </select>
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Toping 6</option>
-                <% for(var i=0; i<toppingPizz.length; i++) {%>
-                  <option value="<%=toppingPizz[i].topping_id%>">
-                    <%=toppingPizz[i].name%>
-                  </option>
-                  <% } %>
-              </select>
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Quantité</option>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-              </select>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au panier</button>
-            </div>
+    <div class="modal fade" id="pizzaBoxP" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLongTitle">Pizza Perso</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body sliderPizza">
+            <img src="img/pizzaPerso.png" alt="..." class="img-thumbnail">
+            <select class="custom-select" id="CustomS" onclick="cahngePriceCustom()">
+              <option selected value="1">Taille</option>
+              <option value="1">M</option>
+              <option value="1.4">L</option>
+              <option value="1.7">XL</option>
+            </select>
+            <select class="custom-select" id="CustomTop1" onclick="CheckTops()">
+              <option selected value="-1">Toping 1</option>
+              <% for(var i=0; i<toppingPizz.length; i++) {%>
+                <option value="<%=toppingPizz[i].topping_id%>">
+                  <%=toppingPizz[i].name%>
+                </option>
+                <% } %>
+            </select>
+            <select class="custom-select" id="CustomTop2" onclick="CheckTops()">
+              <option selected value="-1">Toping 2</option>
+              <% for(var i=0; i<toppingPizz.length; i++) {%>
+                <option value="<%=toppingPizz[i].topping_id%>">
+                  <%=toppingPizz[i].name%>
+                </option>
+                <% } %>
+            </select>
+            <select class="custom-select" id="CustomTop3" onclick="CheckTops()">
+              <option selected value="-1">Toping 3</option>
+              <% for(var i=0; i<toppingPizz.length; i++) {%>
+                <option value="<%=toppingPizz[i].topping_id%>">
+                  <%=toppingPizz[i].name%>
+                </option>
+                <% } %>
+            </select>
+            <select class="custom-select" id="CustomTop4" onclick="CheckTops()">
+              <option selected value="-1">Toping 4</option>
+              <% for(var i=0; i<toppingPizz.length; i++) {%>
+                <option value="<%=toppingPizz[i].topping_id%>">
+                  <%=toppingPizz[i].name%>
+                </option>
+                <% } %>
+            </select>
+            <select class="custom-select" id="CustomTop5" onclick="CheckTops()">
+              <option selected value="-1">Toping 5</option>
+              <% for(var i=0; i<toppingPizz.length; i++) {%>
+                <option value="<%=toppingPizz[i].topping_id%>">
+                  <%=toppingPizz[i].name%>
+                </option>
+                <% } %>
+            </select>
+            <select class="custom-select" id="CustomTop6" onclick="CheckTops()">
+              <option selected value="-1">Toping 6</option>
+              <% for(var i=0; i<toppingPizz.length; i++) {%>
+                <option value="<%=toppingPizz[i].topping_id%>">
+                  <%=toppingPizz[i].name%>
+                </option>
+                <% } %>
+            </select>
+            <select class="custom-select" id="qteCustom" onclick="cahngePriceCustom()">
+              <option selected value="1">Quantité</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+            </select>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal" onclick="AddBasketCustom()"
+              id="tops">ajouter au
+              panier</button>
+            <p id="priceCustom">10€</p>
+            <p id="priceCustomC" style="display:none;">10€</p>
+            <p>3 premier topings gratuit 1€ par supplémentaire</p>
           </div>
         </div>
       </div>
     </div>
-    <script>
-      let basketNUM = document.querySelector('#basketNUM');
-      console.log(getCookie("qtebasket"));
+  </div>
+  <script>
+    let basketNUM = document.querySelector('#basketNUM');
+    console.log(getCookie("qtebasket"));
+    if (parseInt(getCookie("qtebasket")) > 0) {
+      basketNUM.innerHTML = getCookie("qtebasket");
+    }
+    let amount;
+
+    function CheckTops() {
+      let toping1 = document.querySelector('#CustomTop1');
+      let toping2 = document.querySelector('#CustomTop2');
+      let toping3 = document.querySelector('#CustomTop3');
+      let toping4 = document.querySelector('#CustomTop4');
+      let toping5 = document.querySelector('#CustomTop5');
+      let toping6 = document.querySelector('#CustomTop6');
+      let toping1V = toping1.value;
+      let toping2V = toping2.value;
+      let toping3V = toping3.value;
+      let toping4V = toping4.value;
+      let toping5V = toping5.value;
+      let toping6V = toping6.value;
+      if (toping1V == -1 || toping2V == -1 || toping3V == -1) {
+        let tops = document.querySelector('#tops');
+        tops.style.display = "none";
+      }
+      else {
+        let tops = document.querySelector('#tops');
+        tops.style.display = "block";
+      }
+      if (toping4V > -1) {
+        let price = document.querySelector('#priceCustomC');
+        let qte = document.querySelector('#qteCustom');
+        let qteValue = parseInt(qte.value);
+        let priceValue = parseInt(price.innerHTML);
+        let CustomSelect = document.querySelector('#CustomS');
+        let CustomSelectValue = parseInt(CustomSelect.value);
+        console.log(CustomSelectValue);
+
+
+        let priceTotal = qteValue * priceValue * CustomSelectValue;
+        amount = priceTotal + 1;
+        let priceReal = document.querySelector('#priceCustom');
+
+        priceReal.innerHTML = priceTotal + "€";
+
+      }
+      if (toping5V > -1) {
+        let price = document.querySelector('#priceCustomC');
+        let qte = document.querySelector('#qteCustom');
+        let qteValue = parseInt(qte.value);
+        let priceValue = parseInt(price.innerHTML);
+        let CustomSelect = document.querySelector('#CustomS');
+        let CustomSelectValue = parseInt(CustomSelect.value);
+        console.log(CustomSelectValue);
+
+
+        let priceTotal = qteValue * priceValue * CustomSelectValue;
+        amount = priceTotal + 1;
+        let priceReal = document.querySelector('#priceCustom');
+
+        priceReal.innerHTML = priceTotal + "€";
+
+      }
+      if (toping6V > -1) {
+        let price = document.querySelector('#priceCustomC');
+        let qte = document.querySelector('#qteCustom');
+        let qteValue = parseInt(qte.value);
+        let priceValue = parseInt(price.innerHTML);
+        let CustomSelect = document.querySelector('#CustomS');
+        let CustomSelectValue = parseInt(CustomSelect.value);
+        console.log(CustomSelectValue);
+
+
+        let priceTotal = qteValue * priceValue * CustomSelectValue;
+        amount = priceTotal + 1;
+        let priceReal = document.querySelector('#priceCustom');
+
+        priceReal.innerHTML = priceTotal + "€";
+
+      }
+    }
+    function cahngePriceCustom(i) {
+      let price = document.querySelector('#priceCustomC');
+      let qte = document.querySelector('#qteCustom');
+      let qteValue = parseInt(qte.value);
+      let priceValue = parseInt(price.innerHTML);
+      let CustomSelect = document.querySelector('#CustomS');
+      let CustomSelectValue = parseInt(CustomSelect.value);
+      console.log(CustomSelectValue);
+
+      let priceTotal = qteValue * priceValue * CustomSelectValue;
+      amount = priceTotal;
+      let priceReal = document.querySelector('#priceCustom');
+
+      priceReal.innerHTML = priceTotal + "€";
+    }
+
+    function changePrice(i) {
+      var PizzaSize = document.getElementById("taille" + i);
+      var valueSize = PizzaSize.options[PizzaSize.selectedIndex].value;
+
+      var PizzaQte = document.getElementById("nombre" + i);
+      var valueAmount = PizzaQte.options[PizzaQte.selectedIndex].value;
+
+      let PizzaPrice = document.querySelector('#priceP' + i);
+      let ValPrice = PizzaPrice.innerHTML;
+      let total = 10 * valueAmount * valueSize;
+
+      PizzaPrice.innerHTML = total.toString() + "€";
+    }
+
+    function changePriceStarter(i) {
+      var StarterSize = document.getElementById("StarterQTE" + i);
+      var valueSize = StarterSize.options[StarterSize.selectedIndex].value;
+
+      let StarterPrice = document.querySelector('#priceS' + i);
+      let ValPrice = StarterPrice.innerHTML;
+
+      let total = 5 * valueSize;
+
+      StarterPrice.innerHTML = total.toString() + "€";
+    }
+
+    function changeDrinks(i) {
+      var DrinkSize = document.getElementById("DrinkQTE" + i);
+      var valueSize = DrinkSize.options[DrinkSize.selectedIndex].value;
+
+      let DrinkPrice = document.querySelector('#priceD' + i);
+      let ValPrice = DrinkPrice.innerHTML;
+
+      let total = 1 * valueSize;
+
+      DrinkPrice.innerHTML = total.toString() + "€";
+    }
+
+    function changePriceMenu(i) {
+      var MenuSize = document.getElementById("MenuQTE" + i);
+      var valueSize = MenuSize.options[MenuSize.selectedIndex].value;
+
+      let MenuPrice = document.querySelector('#priceM' + i);
+      let ValPrice = MenuPrice.innerHTML;
+
+      let total = 15 * valueSize;
+
+      MenuPrice.innerHTML = total.toString() + "€";
+    }
+
+    function AddDrinkBasket(i, nameDrink) {
+      var DrinkSize = document.getElementById("DrinkQTE" + i);
+      var valueSize = DrinkSize.options[DrinkSize.selectedIndex].value;
+
+      let DrinkPrice = document.querySelector('#priceD' + i);
+      let ValPrice = DrinkPrice.innerHTML;
+
+      let total = 1 * valueSize;
+      basketNUM.innerHTML = getCookie("qtebasket");
       if (parseInt(getCookie("qtebasket")) > 0) {
-        basketNUM.innerHTML = getCookie("qtebasket");
+        basketNUM.innerHTML = parseInt(getCookie("qtebasket")) + parseInt(total);
+        var totalval = parseInt(getCookie("qtebasket")) + parseInt(total);
+        document.cookie = "qtebasket=" + totalval + ";secure";
+
+      } else {
+        basketNUM.innerHTML = parseInt(total);
+        document.cookie = "qtebasket=" + parseInt(valueSize) + ";secure";
       }
-      let amount;
-
-      function changePrice(i) {
-        var PizzaSize = document.getElementById("taille" + i);
-        var valueSize = PizzaSize.options[PizzaSize.selectedIndex].value;
-
-        var PizzaQte = document.getElementById("nombre" + i);
-        var valueAmount = PizzaQte.options[PizzaQte.selectedIndex].value;
-
-        let PizzaPrice = document.querySelector('#priceP' + i);
-        let ValPrice = PizzaPrice.innerHTML;
-        let total = 10 * valueAmount * valueSize;
-
-        PizzaPrice.innerHTML = total.toString() + "€";
+      let cookie = getCookie("basket");
+      let amount = 0;
+      if (cookie != null) {
+        amount = (cookie.split("/")).length;
       }
-
-      function changePriceStarter(i) {
-        var StarterSize = document.getElementById("StarterQTE" + i);
-        var valueSize = StarterSize.options[StarterSize.selectedIndex].value;
-
-        let StarterPrice = document.querySelector('#priceS' + i);
-        let ValPrice = StarterPrice.innerHTML;
-
-        let total = 5 * valueSize;
-
-        StarterPrice.innerHTML = total.toString() + "€";
+      if (cookie == null) {
+        cookie = "";
       }
-
-      function changeDrinks(i) {
-        var DrinkSize = document.getElementById("DrinkQTE" + i);
-        var valueSize = DrinkSize.options[DrinkSize.selectedIndex].value;
-
-        let DrinkPrice = document.querySelector('#priceD' + i);
-        let ValPrice = DrinkPrice.innerHTML;
-
-        let total = 1 * valueSize;
-
-        DrinkPrice.innerHTML = total.toString() + "€";
+      let AddCookie = cookie;
+      let separate = "/";
+      let ArticleNum;
+      if (amount == 0) {
+        ArticleNum = amount + 1;
       }
-
-      function changePriceMenu(i) {
-        var MenuSize = document.getElementById("MenuQTE" + i);
-        var valueSize = MenuSize.options[MenuSize.selectedIndex].value;
-
-        let MenuPrice = document.querySelector('#priceM' + i);
-        let ValPrice = MenuPrice.innerHTML;
-
-        let total = 15 * valueSize;
-
-        MenuPrice.innerHTML = total.toString() + "€";
+      else {
+        ArticleNum = amount;
       }
-
-      function AddDrinkBasket(i, nameDrink) {
-        var DrinkSize = document.getElementById("DrinkQTE" + i);
-        var valueSize = DrinkSize.options[DrinkSize.selectedIndex].value;
-
-        let DrinkPrice = document.querySelector('#priceD' + i);
-        let ValPrice = DrinkPrice.innerHTML;
-
-        let total = 1 * valueSize;
-        basketNUM.innerHTML = getCookie("qtebasket");
-        if (parseInt(getCookie("qtebasket")) > 0) {
-          basketNUM.innerHTML = parseInt(getCookie("qtebasket")) + parseInt(total);
-          var totalval = parseInt(getCookie("qtebasket")) + parseInt(total);
-          document.cookie = "qtebasket=" + totalval + ";secure";
-
-        } else {
-          basketNUM.innerHTML = parseInt(total);
-          document.cookie = "qtebasket=" + parseInt(valueSize) + ";secure";
-        }
-        let cookie = getCookie("basket");
-        let amount = 0;
-        if (cookie != null) {
-          amount = (cookie.split("/")).length;
-        }
-        if (cookie == null) {
-          cookie = "";
-        }
-        let AddCookie = cookie;
-        let separate = "/";
-        let ArticleNum;
-        if (amount == 0) {
-          ArticleNum = amount + 1;
-        }
-        else {
-          ArticleNum = amount;
-        }
-        let ArticleType = nameDrink;
-        let IdOfProduct = i;
-        let arID = 1;
-        let qteOrdered = parseInt(total);
-        let tab;
-        let size = "33c";
-        if (cookie = "") {
-          tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
-        }
-        else {
-          tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
-        }
-        document.cookie = "basket=" + tab + ";secure";
+      let ArticleType = nameDrink;
+      let IdOfProduct = i;
+      let arID = 1;
+      let qteOrdered = parseInt(total);
+      let tab;
+      let size = "33c";
+      if (cookie = "") {
+        tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
       }
-
-      function AddBasketMenu(i, nameMenu) {
-        var MenuSize = document.getElementById("MenuQTE" + i);
-        var valueSize = MenuSize.options[MenuSize.selectedIndex].value;
-
-        let MenuPrice = document.querySelector('#priceM' + i);
-        let ValPrice = MenuPrice.innerHTML;
-
-        let total = 15 * valueSize;
-        basketNUM.innerHTML = getCookie("qtebasket");
-        if (parseInt(getCookie("qtebasket")) > 0) {
-          basketNUM.innerHTML = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
-          var totalval = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
-          document.cookie = "qtebasket=" + totalval + ";secure";
-
-        } else {
-          basketNUM.innerHTML = parseInt(valueSize);
-          document.cookie = "qtebasket=" + parseInt(valueSize) + ";secure";
-        }
-        let cookie = getCookie("basket");
-        let amount = 0;
-        if (cookie != null) {
-          amount = (cookie.split("/")).length;
-        }
-        if (cookie == null) {
-          cookie = "";
-        }
-        let AddCookie = cookie;
-        let separate = "/";
-        let ArticleNum;
-        if (amount == 0) {
-          ArticleNum = amount + 1;
-        }
-        else {
-          ArticleNum = amount;
-        }
-        let ArticleType = nameMenu;
-        let IdOfProduct = i;
-        let arID = 5;
-        let qteOrdered = valueSize;
-        let tab;
-        let size = -1;
-        if (cookie = "") {
-          tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
-        }
-        else {
-          tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
-        }
-        document.cookie = "basket=" + tab + ";secure";
+      else {
+        tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
       }
+      document.cookie = "basket=" + tab + ";secure";
+    }
 
-      function AddStarterBasket(i, nameStarter) {
-        var StarterSize = document.getElementById("StarterQTE" + i);
-        var valueSize = StarterSize.options[StarterSize.selectedIndex].value;
+    function AddBasketMenu(i, nameMenu) {
+      var MenuSize = document.getElementById("MenuQTE" + i);
+      var valueSize = MenuSize.options[MenuSize.selectedIndex].value;
 
-        let StarterPrice = document.querySelector('#priceS' + i);
-        let ValPrice = StarterPrice.innerHTML;
+      let MenuPrice = document.querySelector('#priceM' + i);
+      let ValPrice = MenuPrice.innerHTML;
 
-        let total = 5 * valueSize;
-        basketNUM.innerHTML = getCookie("qtebasket");
-        if (parseInt(getCookie("qtebasket")) > 0) {
-          basketNUM.innerHTML = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
-          var totalval = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
-          document.cookie = "qtebasket=" + parseInt(totalval) + ";secure";
+      let total = 15 * valueSize;
+      basketNUM.innerHTML = getCookie("qtebasket");
+      if (parseInt(getCookie("qtebasket")) > 0) {
+        basketNUM.innerHTML = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
+        var totalval = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
+        document.cookie = "qtebasket=" + totalval + ";secure";
 
-        } else {
-          basketNUM.innerHTML = valueSize;
-          document.cookie = "qtebasket=" + parseInt(valueSize) + ";secure";
-        }
-        let cookie = getCookie("basket");
-        let amount = 0;
-        if (cookie != null) {
-          amount = (cookie.split("/")).length;
-        }
-        if (cookie == null) {
-          cookie = "";
-        }
-        let AddCookie = cookie;
-        let separate = "/";
-        let ArticleNum;
-        if (amount == 0) {
-          ArticleNum = amount + 1;
-        }
-        else {
-          ArticleNum = amount;
-        }
-        let ArticleType = nameStarter;
-        let IdOfProduct = i;
-        let arID = 2;
-        let qteOrdered = parseInt(valueSize);
-        let tab;
-        let size = -1;
-        if (cookie = "") {
-          tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), '', separate];
-        }
-        else {
-          tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), '', separate];
-        }
-        document.cookie = "basket=" + tab + ";secure";
-
+      } else {
+        basketNUM.innerHTML = parseInt(valueSize);
+        document.cookie = "qtebasket=" + parseInt(valueSize) + ";secure";
       }
-
-      function AddBasket(i, artype, dadadad) {
-        let size = document.querySelector('#taille' + i);
-        let valueSize = size.options[size.selectedIndex].value;
-        if (valueSize == 1) {
-          valueSize = "M";
-        }
-        else if (valueSize == 1.4) {
-          valueSize = "L";
-        }
-        else if (valueSize == 1.7) {
-          valueSize = "XL";
-        }
-        let cookie = getCookie("basket");
-        let amount = 0;
-        if (cookie != null) {
-          amount = (cookie.split("/")).length;
-        }
-        let basketNUM = document.querySelector('#basketNUM');
-        var AmountinBasket = document.getElementById("nombre" + i).value;
-        var newN = parseInt(basketNUM.innerHTML) + parseInt(AmountinBasket);
-        document.cookie = "qtebasket=" + newN + ";secure";
-        basketNUM.innerHTML = newN;
-        let PizzaPrice = document.querySelector('#priceP' + i);
-        let ValPrice = PizzaPrice.innerHTML;
-        let ValPrice2 = ValPrice.split("€");
-        if (cookie == null) {
-          cookie = "";
-        }
-        let AddCookie = cookie;
-        let separate = "/";
-        let ArticleNum;
-        if (amount == 0) {
-          ArticleNum = amount + 1;
-        }
-        else {
-          ArticleNum = amount;
-        }
-        let ArticleType = artype;
-        let IdOfProduct = i;
-        let arID = dadadad;
-        let qteOrdered = AmountinBasket;
-        let tab;
-        if (cookie = "") {
-          tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, ValPrice2[0], valueSize, separate];
-        }
-        else {
-          tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, ValPrice2[0], valueSize, separate];
-        }
-        document.cookie = "basket=" + tab + ";secure";
-        cookie = getCookie("basket");
+      let cookie = getCookie("basket");
+      let amount = 0;
+      if (cookie != null) {
+        amount = (cookie.split("/")).length;
       }
-    </script>
+      if (cookie == null) {
+        cookie = "";
+      }
+      let AddCookie = cookie;
+      let separate = "/";
+      let ArticleNum;
+      if (amount == 0) {
+        ArticleNum = amount + 1;
+      }
+      else {
+        ArticleNum = amount;
+      }
+      let ArticleType = nameMenu;
+      let IdOfProduct = i;
+      let arID = 5;
+      let qteOrdered = valueSize;
+      let tab;
+      let size = -1;
+      if (cookie = "") {
+        tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
+      }
+      else {
+        tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
+      }
+      document.cookie = "basket=" + tab + ";secure";
+    }
+
+    function AddStarterBasket(i, nameStarter) {
+      var StarterSize = document.getElementById("StarterQTE" + i);
+      var valueSize = StarterSize.options[StarterSize.selectedIndex].value;
+
+      let StarterPrice = document.querySelector('#priceS' + i);
+      let ValPrice = StarterPrice.innerHTML;
+
+      let total = 5 * valueSize;
+      basketNUM.innerHTML = getCookie("qtebasket");
+      if (parseInt(getCookie("qtebasket")) > 0) {
+        basketNUM.innerHTML = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
+        var totalval = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
+        document.cookie = "qtebasket=" + parseInt(totalval) + ";secure";
+
+      } else {
+        basketNUM.innerHTML = valueSize;
+        document.cookie = "qtebasket=" + parseInt(valueSize) + ";secure";
+      }
+      let cookie = getCookie("basket");
+      let amount = 0;
+      if (cookie != null) {
+        amount = (cookie.split("/")).length;
+      }
+      if (cookie == null) {
+        cookie = "";
+      }
+      let AddCookie = cookie;
+      let separate = "/";
+      let ArticleNum;
+      if (amount == 0) {
+        ArticleNum = amount + 1;
+      }
+      else {
+        ArticleNum = amount;
+      }
+      let ArticleType = nameStarter;
+      let IdOfProduct = i;
+      let arID = 2;
+      let qteOrdered = parseInt(valueSize);
+      let tab;
+      let size = -1;
+      if (cookie = "") {
+        tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), '', separate];
+      }
+      else {
+        tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), '', separate];
+      }
+      document.cookie = "basket=" + tab + ";secure";
+
+    }
+
+    function AddBasket(i, artype, dadadad) {
+      let size = document.querySelector('#taille' + i);
+      let valueSize = size.options[size.selectedIndex].value;
+      if (valueSize == 1) {
+        valueSize = "M";
+      }
+      else if (valueSize == 1.4) {
+        valueSize = "L";
+      }
+      else if (valueSize == 1.7) {
+        valueSize = "XL";
+      }
+      let cookie = getCookie("basket");
+      let amount = 0;
+      if (cookie != null) {
+        amount = (cookie.split("/")).length;
+      }
+      let basketNUM = document.querySelector('#basketNUM');
+      var AmountinBasket = document.getElementById("nombre" + i).value;
+      var newN = parseInt(basketNUM.innerHTML) + parseInt(AmountinBasket);
+      document.cookie = "qtebasket=" + newN + ";secure";
+      basketNUM.innerHTML = newN;
+      let PizzaPrice = document.querySelector('#priceP' + i);
+      let ValPrice = PizzaPrice.innerHTML;
+      let ValPrice2 = ValPrice.split("€");
+      if (cookie == null) {
+        cookie = "";
+      }
+      let AddCookie = cookie;
+      let separate = "/";
+      let ArticleNum;
+      if (amount == 0) {
+        ArticleNum = amount + 1;
+      }
+      else {
+        ArticleNum = amount;
+      }
+      let ArticleType = artype;
+      let IdOfProduct = i;
+      let arID = dadadad;
+      let qteOrdered = AmountinBasket;
+      let tab;
+      if (cookie = "") {
+        tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, ValPrice2[0], valueSize, separate];
+      }
+      else {
+        tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, ValPrice2[0], valueSize, separate];
+      }
+      document.cookie = "basket=" + tab + ";secure";
+      cookie = getCookie("basket");
+    }
+  </script>
 
 </body>

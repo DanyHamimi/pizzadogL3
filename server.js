@@ -106,22 +106,25 @@ app.use(express.static(__dirname + '/public'));
 app.get('/', (req, res) => {
     if (isLogged(req)) {
         livreur(res);
+        ;
     }
-    console.log(toppingPizz);
-    let prom = new Promise((resolve, reject) => {
-        client.query('Select * from menu', (err, res) => {
-            if (err) {
-                console.log(err.stack);
-            } else {
-                menuName = res.rows;
-            }
-            resolve(menuName);
+    else {
+        console.log(toppingPizz);
+        let prom = new Promise((resolve, reject) => {
+            client.query('Select * from menu', (err, res) => {
+                if (err) {
+                    console.log(err.stack);
+                } else {
+                    menuName = res.rows;
+                }
+                resolve(menuName);
+            })
         })
-    })
-    prom.then(() => {
-        console.log(menuName);
-        res.render("index.ejs", { message: "rayane teste", pizzaName: pizzaName, toppingPizz: toppingPizz, starterName: starterName, boissonName: boissonName, menuName: menuName });
-    })
+        prom.then(() => {
+            console.log(menuName);
+            res.render("index.ejs", { message: "rayane teste", pizzaName: pizzaName, toppingPizz: toppingPizz, starterName: starterName, boissonName: boissonName, menuName: menuName });
+        })
+    }
 
 })
 
@@ -255,9 +258,6 @@ function isLogged(req) {
 app.get('/livreur', (req, res) => {
     if (isLogged(req)) {
         livreur(res);
-    }
-    else {
-        res.redirect('/login');
     }
 })
 app.get('/livreur/:id', (req, res) => {
