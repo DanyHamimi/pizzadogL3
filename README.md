@@ -31,5 +31,3 @@ npm install ejs
 npm start
 vous pourrez accéder au site via localhost:5000
 
-Les fonctionalités vous sont présentées dans la vidéo suivante :
-
