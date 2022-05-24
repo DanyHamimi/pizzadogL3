@@ -145,7 +145,8 @@
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
-                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au
+                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal"
+                  onclick="AddStarterBasket('<%=i%>', '<%=starterName[i].name%>')">ajouter au
                   panier</button>
                 <p id="priceS<%=i%>"> 5€</p>
                 <p id="priceSC<%=i%>" style="display:none;"> 5€</p>
@@ -498,8 +499,6 @@
         let ValPrice = DrinkPrice.innerHTML;
 
         let total = 1 * valueSize;
-        var AmountinBasket = document.getElementById("nombre" + i).value;
-        console.log(AmountinBasket);
         basketNUM.innerHTML = getCookie("qtebasket");
         if (parseInt(getCookie("qtebasket")) > 0) {
           basketNUM.innerHTML = parseInt(getCookie("qtebasket")) + parseInt(total);
@@ -538,6 +537,56 @@
         }
         else {
           tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
+        }
+        document.cookie = "basket=" + tab + ";secure";
+      }
+
+      function AddStarterBasket(i, nameStarter) {
+        var StarterSize = document.getElementById("StarterQTE" + i);
+        var valueSize = StarterSize.options[StarterSize.selectedIndex].value;
+
+        let StarterPrice = document.querySelector('#priceS' + i);
+        let ValPrice = StarterPrice.innerHTML;
+
+        let total = 5 * valueSize;
+        basketNUM.innerHTML = getCookie("qtebasket");
+        if (parseInt(getCookie("qtebasket")) > 0) {
+          basketNUM.innerHTML = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
+          var totalval = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
+          document.cookie = "qtebasket=" + totalval + ";secure";
+
+        } else {
+          basketNUM.innerHTML = parseInt(valueSize);
+          document.cookie = "qtebasket=" + totalval + ";secure";
+        }
+        let cookie = getCookie("basket");
+        let amount = 0;
+        if (cookie != null) {
+          amount = (cookie.split("/")).length;
+        }
+        if (cookie == null) {
+          cookie = "";
+        }
+        let AddCookie = cookie;
+        let separate = "/";
+        let ArticleNum;
+        if (amount == 0) {
+          ArticleNum = amount + 1;
+        }
+        else {
+          ArticleNum = amount;
+        }
+        let ArticleType = nameStarter;
+        let IdOfProduct = i;
+        let arID = 2;
+        let qteOrdered = parseInt(valueSize);
+        let tab;
+        let size = -1;
+        if (cookie = "") {
+          tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), '', separate];
+        }
+        else {
+          tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), '', separate];
         }
         document.cookie = "basket=" + tab + ";secure";
 
