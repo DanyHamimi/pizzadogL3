@@ -216,6 +216,9 @@ app.get('/livre/:id', (req, res) => {
   })
 })
 
+app.post('/orderConfirm', function (request, response){
+    console.log(request.body);
+});
 
 app.post('/register', function (request, response) {
     var name = request.body.name;
