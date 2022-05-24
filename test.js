@@ -114,9 +114,9 @@ app.get('/', (req, res) => {
     })
     prom.then(() => {
         console.log(menuName);
-        res.render("index.ejs", { message: "rayane teste", pizzaName: pizzaName, toppingPizz: toppingPizz, starterName: starterName, boissonName: boissonName, menuName: menuName});
+        res.render("index.ejs", { message: "rayane teste", pizzaName: pizzaName, toppingPizz: toppingPizz, starterName: starterName, boissonName: boissonName, menuName: menuName });
     })
-    
+
 })
 
 app.get('/login', (req, res) => {
@@ -139,6 +139,19 @@ app.get('/basket', (req, res) => {
     bisElmns = elmns.join('').split(',');
     console.log(bisElmns);
     res.render("basket.ejs", { basket: bisElmns });
+})
+
+app.get('/order', (req, res) => {
+    //console.log('Cookies: ', req.cookies.basket);
+    const elmns = [];
+    elmns.push(req.cookies.basket);
+    //console.log(elmns.join(''));
+    //regex '/' elmns
+    var bisElmns = elmns.join('').split('/');
+    console.log(bisElmns);
+    bisElmns = elmns.join('').split(',');
+    console.log(bisElmns);
+    res.render("order.ejs", { basket: bisElmns });
 })
 
 app.get('/livreur', (req, res) => {
