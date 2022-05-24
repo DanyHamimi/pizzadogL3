@@ -341,7 +341,7 @@
             <h5 class="card-title">Menu perso</h5>
             <p class="card-text">Creez votre pizza</p>
             <p class="card-text">20-30$</p>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pizzaBoxP">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pizzaBoxM">
               Commannder
             </button>
           </div>
@@ -373,22 +373,6 @@
             </div>
             <div class="modal-body sliderPizza">
               <img src="img/pizzaPerso.png" alt="..." class="img-thumbnail">
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Entrée</option>
-                <% for(var i=0; i<starterName.length; i++) {%>
-                  <option value="<%=starterName[i].starter_id%>">
-                    <%=starterName[i].name%>
-                  </option>
-                  <% } %>
-              </select>
-              <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Boisson</option>
-                <% for(var i=0; i<boissonName.length; i++) {%>
-                  <option value="<%=boissonName[i].boisson_id%>">
-                    <%=boissonName[i].name%>
-                  </option>
-                  <% } %>
-              </select>
               <select class="custom-select" id="inputGroupSelect01">
                 <option selected>Taille</option>
                 <option value="1">M</option>
@@ -444,7 +428,7 @@
                   <% } %>
               </select>
               <select class="custom-select" id="inputGroupSelect01">
-                <!--<option selected>Nombre</option>-->
+                <option selected>Nombre</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
