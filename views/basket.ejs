@@ -61,7 +61,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <h1>Basket</h1>
+                <h1>Panier</h1>
             </div>
         </div>
         <div class="row orange-button">
@@ -69,18 +69,18 @@
                 <table class="table table-striped">
                     <thead>
                         <tr>
-                            <th>Product</th>
-                            <th>Price</th>
-                            <th>Quantity</th>
+                            <th>Produit</th>
+                            <th>Prix</th>
+                            <th>Quantité</th>
                             <th>Total</th>
-                            <th>delete</th>
+                            <th>Supprimer</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (var i=0; i < basket.length-1; i=i+7) { %>
+                        <% for (var i=0; i < basket.length-1; i=i+8) { %>
                             <tr>
                                 <td>
-                                    <%=basket[i+2] %>
+                                    <%=basket[i+2] + " " + basket[i+7] %>
                                 </td>
                                 <td>
                                     <%=basket[i+6] /basket[i+5] %>€
@@ -91,7 +91,7 @@
                                 <td>
                                     <%=basket[i+6] %>€
                                 </td>
-                                <td><button type="button" class="btn btn-danger">delete</button></td>
+                                <td><button type="button" class="btn btn-danger">Supprimer</button></td>
                             </tr>
                             <%}%>
                     </tbody>
@@ -99,7 +99,7 @@
                 <!-- command button-->
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="/order" class="btn btn-primary">Order</a>
+                        <a href="/order" class="btn btn-primary">Commander</a>
                     </div>
                 </div>
             </div>

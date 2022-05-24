@@ -102,7 +102,7 @@
       <% for(var i=0; i<starterName.length; i++) {%>
         <div class="col-md-4">
           <div class="card pizzaMargin">
-            <img src="img/salade1.jpg" class="card-img-top" alt="...">
+            <img src="img/salade<%=i%>.jpg" class="card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">
                 <%=starterName[i].name%>
@@ -110,7 +110,7 @@
               <p class="card-text">
                 <%=starterName[i].description%>
               </p>
-              <p class="card-text">10$</p>
+              <p class="card-text">A partir de 5€</p>
               <button type="button" class="btn btn-primary" data-toggle="modal"
                 data-target="#starterBox<%=starterName[i].starter_id%>">
                 Commannder
@@ -134,20 +134,21 @@
                 <img src="img/salade1.jpg" alt="..." class="img-thumbnail">
               </div>
               <div class="modal-footer">
-                <select class="custom-select" id="inputGroupSelect01">
-                  <option selected>Taille</option>
-                  <option value="1">OM</option>
-                  <option value="2">L</option>
-                  <option value="3">XL</option>
+                <select class="custom-select" id="SausageS">
+                  <option selected value="0">Sauce</option>
+                  <option value="0">Avec</option>
+                  <option value="1">Sans</option>
                 </select>
-                <select class="custom-select" id="inputGroupSelect01">
-                  <option selected>Nombre</option>
+                <select class="custom-select" id="StarterQTE<%=i%>" onclick="changePriceStarter('<%=i%>')">
+                  <option selected value="1">Quantité</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
                 <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au
                   panier</button>
+                <p id="priceS<%=i%>"> 5€</p>
+                <p id="priceSC<%=i%>" style="display:none;"> 5€</p>
               </div>
             </div>
           </div>
@@ -156,14 +157,14 @@
     </div>
     <div class="row">
       <div class="col-md-12">
-        <h2>Nos Boisson</h2>
+        <h2>Nos Boissons</h2>
       </div>
     </div>
     <div class="row">
       <% for(var i=0; i<boissonName.length; i++) {%>
         <div class="col-md-4">
           <div class="card pizzaMargin">
-            <img src="img/boisson.jpg"" class="card-img-top" alt="...">
+            <img src="img/boisson.jpg"" class=" card-img-top" alt="...">
             <div class="card-body">
               <h5 class="card-title">
                 <%=boissonName[i].name%>
@@ -192,14 +193,15 @@
                 <img src="img/boisson.jpg" alt="..." class="img-thumbnail">
               </div>
               <div class="modal-footer">
-                <select class="custom-select" id="inputGroupSelect01">
-                  <option selected>Nombre</option>
+                <select class="custom-select" id="DrinkQTE<%=i%>" onclick="changeDrinks('<%=i%>')">
+                  <option selected value="1">Quantité</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
                 <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au
                   panier</button>
+                <p id="priceD<%=i%>"> 1€</p>
               </div>
             </div>
           </div>
@@ -254,7 +256,7 @@
                   <option value="1.7">XL</option>
                 </select>
                 <select class="custom-select" id="nombre<%=i%>" onclick="changePrice('<%=i%>')">
-                  <option selected value="1">Nombre</option>
+                  <option selected value="1">Quantité</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -312,7 +314,7 @@
               </div>
               <div class="modal-footer">
                 <select class="custom-select" id="nombre<%=i%>" onclick="changePrice('<%=i%>')">
-                  <option selected value="1">Nombre</option>
+                  <option selected value="1">Quantité</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
@@ -428,7 +430,7 @@
                   <% } %>
               </select>
               <select class="custom-select" id="inputGroupSelect01">
-                <option selected>Nombre</option>
+                <option selected>Quantité</option>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -444,50 +446,63 @@
     <script>
       let basketNUM = document.querySelector('#basketNUM');
       basketNUM = 0;
-      //basketNUM.innerHTML = ((getCookie("name")).split(",").length / 2).toString();
       let amount;
-      /*function AddBasket(a, b, c) {
-        console.log(c);
-        selectElement = document.querySelector('#nombre0');
-        amount = selectElement.value;
-        console.log(amount);
-      }*/
       function changePrice(i) {
-        /* var price = document.getElementById("priceC" + i).innerHTML;
-         var ValPrice = price.split("€");
-         console.log(ValPrice[0]);
-         var total = ValPrice[0] * a;
-         console.log(total)
- 
-         //val = document.querySelector(10 + i);
-         let PizzaAmount = document.querySelector('#priceP' + i);*/
         var PizzaSize = document.getElementById("taille" + i);
         var valueSize = PizzaSize.options[PizzaSize.selectedIndex].value;
-        console.log(valueSize);
 
         var PizzaQte = document.getElementById("nombre" + i);
         var valueAmount = PizzaQte.options[PizzaQte.selectedIndex].value;
-        console.log(valueAmount);
 
         let PizzaPrice = document.querySelector('#priceP' + i);
         let ValPrice = PizzaPrice.innerHTML;
         let total = 10 * valueAmount * valueSize;
-        console.log(total);
 
         PizzaPrice.innerHTML = total.toString() + "€";
       }
 
+      function changePriceStarter(i) {
+        var StarterSize = document.getElementById("StarterQTE" + i);
+        var valueSize = StarterSize.options[StarterSize.selectedIndex].value;
+
+        let StarterPrice = document.querySelector('#priceS' + i);
+        let ValPrice = StarterPrice.innerHTML;
+
+        let total = 5 * valueSize;
+
+        StarterPrice.innerHTML = total.toString() + "€";
+      }
+
+      function changeDrinks(i) {
+        var DrinkSize = document.getElementById("DrinkQTE" + i);
+        var valueSize = DrinkSize.options[DrinkSize.selectedIndex].value;
+
+        let DrinkPrice = document.querySelector('#priceD' + i);
+        let ValPrice = DrinkPrice.innerHTML;
+
+        let total = 1 * valueSize;
+
+        DrinkPrice.innerHTML = total.toString() + "€";
+      }
+
       function AddBasket(i, artype, dadadad) {
-
+        let size = document.querySelector('#taille' + i);
+        let valueSize = size.options[size.selectedIndex].value;
+        if (valueSize == 1) {
+          valueSize = "M";
+        }
+        else if (valueSize == 1.4) {
+          valueSize = "L";
+        }
+        else if (valueSize == 1.7) {
+          valueSize = "XL";
+        }
         let cookie = getCookie("basket");
-
         let amount = 0;
-
         if (cookie != null) {
           amount = (cookie.split("/")).length;
-          console.log(amount);
+          //console.log(amount);
         }
-
         let basketNUM = document.querySelector('#basketNUM');
         var AmountinBasket = document.getElementById("nombre" + i).value;
         var newN = parseInt(basketNUM.innerHTML) + parseInt(AmountinBasket);
@@ -495,7 +510,6 @@
         let PizzaPrice = document.querySelector('#priceP' + i);
         let ValPrice = PizzaPrice.innerHTML;
         let ValPrice2 = ValPrice.split("€");
-
         if (cookie == null) {
           cookie = "";
         }
@@ -512,23 +526,16 @@
         let IdOfProduct = i;
         let arID = dadadad;
         let qteOrdered = AmountinBasket;
-
-        //console.log(cookie + ";" + AddCookie + "/" + ArticleNum + "/" + ArticleType + "/" + IdOfProduct + "/" + qteOrdered);
-        //fill a tab with those values
         let tab;
         if (cookie = "") {
-          tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, ValPrice2[0], separate];
+          tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, ValPrice2[0], valueSize, separate];
         }
         else {
-          tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, ValPrice2[0], separate];
+          tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, ValPrice2[0], valueSize, separate];
         }
-
-        console.log(tab);
         document.cookie = "basket=" + tab + ";secure";
-
         cookie = getCookie("basket");
 
-        console.log(cookie.split("/").length);
 
 
         //document.cookie = cookie + ";" + AddCookie + "/" + ArticleNum + "/" + ArticleType + "/" + IdOfProduct + "/" + qteOrdered;
