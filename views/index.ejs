@@ -23,12 +23,6 @@
         <li class="nav-item active">
           <a class="nav-link" href="/">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="//codeply.com">Codeply</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
       </ul>
     </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
@@ -315,16 +309,16 @@
                 <img src="img/pizza1.png" alt="..." class="img-thumbnail">
               </div>
               <div class="modal-footer">
-                <select class="custom-select" id="NbMenu<%=i%>" onclick="changePriceMenu('<%=i%>')">
+                <select class="custom-select" id="MenuQTE<%=i%>" onclick="changePriceMenu('<%=i%>')">
                   <option selected value="1">Quantité</option>
                   <option value="1">1</option>
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
-                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal"
-                  id="<%=pizzaName[i].name%>" onclick="AddBasket('<%=i%>','<%=menuName[i].name%>')"> ajouter au
+                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal" id="MenuQTE<%=[i]%>"
+                  onclick="AddBasketMenu('<%=i%>','<%=menuName[i].name%>')"> ajouter au
                   panier</button>
-                <p id="priceP<%=i%>"> 15€</p>
+                <p id="priceM<%=i%>"> 15€</p>
                 <p id="priceC<%=i%>" style="display:none;"> 15€</p>
               </div>
             </div>
@@ -491,6 +485,18 @@
         DrinkPrice.innerHTML = total.toString() + "€";
       }
 
+      function changePriceMenu(i) {
+        var MenuSize = document.getElementById("MenuQTE" + i);
+        var valueSize = MenuSize.options[MenuSize.selectedIndex].value;
+
+        let MenuPrice = document.querySelector('#priceM' + i);
+        let ValPrice = MenuPrice.innerHTML;
+
+        let total = 15 * valueSize;
+
+        MenuPrice.innerHTML = total.toString() + "€";
+      }
+
       function AddDrinkBasket(i, nameDrink) {
         var DrinkSize = document.getElementById("DrinkQTE" + i);
         var valueSize = DrinkSize.options[DrinkSize.selectedIndex].value;
@@ -530,6 +536,56 @@
         let IdOfProduct = i;
         let arID = 1;
         let qteOrdered = parseInt(total);
+        let tab;
+        let size = "33c";
+        if (cookie = "") {
+          tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
+        }
+        else {
+          tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
+        }
+        document.cookie = "basket=" + tab + ";secure";
+      }
+
+      function AddBasketMenu(i, nameMenu) {
+        var MenuSize = document.getElementById("MenuQTE" + i);
+        var valueSize = MenuSize.options[MenuSize.selectedIndex].value;
+
+        let MenuPrice = document.querySelector('#priceM' + i);
+        let ValPrice = MenuPrice.innerHTML;
+
+        let total = 15 * valueSize;
+        basketNUM.innerHTML = getCookie("qtebasket");
+        if (parseInt(getCookie("qtebasket")) > 0) {
+          basketNUM.innerHTML = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
+          var totalval = parseInt(getCookie("qtebasket")) + parseInt(valueSize);
+          document.cookie = "qtebasket=" + totalval + ";secure";
+
+        } else {
+          basketNUM.innerHTML = parseInt(valueSize);
+          document.cookie = "qtebasket=" + parseInt(valueSize) + ";secure";
+        }
+        let cookie = getCookie("basket");
+        let amount = 0;
+        if (cookie != null) {
+          amount = (cookie.split("/")).length;
+        }
+        if (cookie == null) {
+          cookie = "";
+        }
+        let AddCookie = cookie;
+        let separate = "/";
+        let ArticleNum;
+        if (amount == 0) {
+          ArticleNum = amount + 1;
+        }
+        else {
+          ArticleNum = amount;
+        }
+        let ArticleType = nameMenu;
+        let IdOfProduct = i;
+        let arID = 5;
+        let qteOrdered = valueSize;
         let tab;
         let size = -1;
         if (cookie = "") {
