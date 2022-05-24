@@ -218,6 +218,22 @@ app.get('/livre/:id', (req, res) => {
 
 app.post('/orderConfirm', function (request, response){
     console.log(request.body);
+    var sqlLine = "INSERT INTO commande (name_client, adresse, status, prix) VALUES ('" + request.body.Nom + "','" + request.body.Adresse +"','"+0+"', '"+ 10 +"')";
+    let prom = new Promise((resolve, reject) => {
+        client.query(sqlLine, (err, res) => {
+            if (err) {
+                console.log(err.stack);
+            } else {
+                console.log(sqlLine);
+                resolve(res);
+            }
+        })    
+    })
+    prom.then(() => {
+        console.log('coucou');
+        //res.render("/livreur");
+        response.send('<script>window.location.href="/";</script>');
+    })
 });
 
 app.post('/register', function (request, response) {
