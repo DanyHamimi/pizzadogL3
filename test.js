@@ -40,6 +40,8 @@ let menuName;
 
 let commande;
 
+let fin;
+
 client.query('Select * from Pizza', (err, res) => {
     if (err) {
         console.log(err.stack);
@@ -126,6 +128,33 @@ app.get('/login', (req, res) => {
 
 app.get('/register', (req, res) => {
     res.render("register.ejs", { tried: "0" });
+})
+
+
+app.get('/etat/:id', (req, res) => {
+    var sqlLine = "Select * from commande where commande_id = " + req.params.id;
+    let prom = new Promise((resolve, reject) => {
+        client.query(sqlLine, (err, res) => {
+            if (err) {
+                console.log(err.stack);
+            } else {
+                console.log(sqlLine);
+                fin=res.rows;
+                resolve(res);
+            }
+        })    
+    })
+    prom.then(() => {
+            console.log('coucou');
+            res.send('<script>window.location.href="/etat";</script>');
+  })
+    //res.render("etat.ejs");
+})
+
+app.get('/etat', (req, res) => {
+    console.log(fin);
+    res.render("etat.ejs" , { fin: fin });
+    
 })
 
 app.get('/basket', (req, res) => {
