@@ -199,7 +199,8 @@
                   <option value="2">2</option>
                   <option value="3">3</option>
                 </select>
-                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal">ajouter au
+                <button type="button" class="btn btn-secondary btn-block" data-dismiss="modal"
+                  onclick="AddDrinkBasket('<%=i%>', '<%=boissonName[i].name%>')">ajouter au
                   panier</button>
                 <p id="priceD<%=i%>"> 1€</p>
               </div>
@@ -489,6 +490,59 @@
         DrinkPrice.innerHTML = total.toString() + "€";
       }
 
+      function AddDrinkBasket(i, nameDrink) {
+        var DrinkSize = document.getElementById("DrinkQTE" + i);
+        var valueSize = DrinkSize.options[DrinkSize.selectedIndex].value;
+
+        let DrinkPrice = document.querySelector('#priceD' + i);
+        let ValPrice = DrinkPrice.innerHTML;
+
+        let total = 1 * valueSize;
+        var AmountinBasket = document.getElementById("nombre" + i).value;
+        console.log(AmountinBasket);
+        basketNUM.innerHTML = getCookie("qtebasket");
+        if (parseInt(getCookie("qtebasket")) > 0) {
+          basketNUM.innerHTML = parseInt(getCookie("qtebasket")) + parseInt(total);
+          var totalval = parseInt(getCookie("qtebasket")) + parseInt(total);
+          document.cookie = "qtebasket=" + totalval + ";secure";
+
+        } else {
+          basketNUM.innerHTML = parseInt(total);
+          document.cookie = "qtebasket=" + totalval + ";secure";
+        }
+        let cookie = getCookie("basket");
+        let amount = 0;
+        if (cookie != null) {
+          amount = (cookie.split("/")).length;
+        }
+        if (cookie == null) {
+          cookie = "";
+        }
+        let AddCookie = cookie;
+        let separate = "/";
+        let ArticleNum;
+        if (amount == 0) {
+          ArticleNum = amount + 1;
+        }
+        else {
+          ArticleNum = amount;
+        }
+        let ArticleType = nameDrink;
+        let IdOfProduct = i;
+        let arID = 3;
+        let qteOrdered = parseInt(total);
+        let tab;
+        let size = -1;
+        if (cookie = "") {
+          tab = [ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
+        }
+        else {
+          tab = [AddCookie, ArticleNum, ArticleType, arID, IdOfProduct, qteOrdered, parseInt(total), valueSize, separate];
+        }
+        document.cookie = "basket=" + tab + ";secure";
+
+      }
+
       function AddBasket(i, artype, dadadad) {
         let size = document.querySelector('#taille' + i);
         let valueSize = size.options[size.selectedIndex].value;
@@ -505,7 +559,6 @@
         let amount = 0;
         if (cookie != null) {
           amount = (cookie.split("/")).length;
-          //console.log(amount);
         }
         let basketNUM = document.querySelector('#basketNUM');
         var AmountinBasket = document.getElementById("nombre" + i).value;
@@ -540,43 +593,7 @@
         }
         document.cookie = "basket=" + tab + ";secure";
         cookie = getCookie("basket");
-
-
-
-        //document.cookie = cookie + ";" + AddCookie + "/" + ArticleNum + "/" + ArticleType + "/" + IdOfProduct + "/" + qteOrdered;
-
       }
-      /*function AddBasket(a, b, c) {
-      let cookie = getCookie("name");
-      if (cookie != null) {
-        let amount = (cookie.split(",")).length;
-        console.log(amount);
-      }
-      selectElement = document.querySelector('#' + b);
-      TaillePizza = selectElement.options[selectElement.selectedIndex].value;
-      selectElement = document.querySelector('#' + c);
-      Console.log(selectElement.options[selectElement.selectedIndex].value);
-      Qtepizza = selectElement.options[selectElement.selectedIndex].value;
-      //console.log(a+" ajouté au panier "+"Taille "+TaillePizza+" Qté "+Qtepizza);
-      //create double dimension array
-      let tab = new Array(2);
-      tab[0] = new Array();
-      tab[1] = new Array();
-      if (cookie != null) {
-        console.log(amount);
-        for (let i = 0; i < (getCookie("name")).split(",").length; i = i + 2) {
-          tab[0].push(cookie.split(",")[i]);
-          tab[1].push(cookie.split(",")[i + 1]);
-        }
-      }
-      tab[0].push(a);
-      tab[1].push('1');
-      //console.log(tab);
-      document.cookie = "name=" + tab + "";
-      //change value of basketNUM on html
-      let basketNUM = document.querySelector('#basketNUM');
-      basketNUM.innerHTML = ((getCookie("name")).split(",").length / 2).toString();
-      }*/
     </script>
 
 </body>
