@@ -176,7 +176,7 @@ app.get('/livreur', (req, res) => {
 })
 app.get('/livreur/:id', (req, res) => {
     var id_command = 0;
-    var sqlLine = "UPDATE commande SET status = 0 WHERE commande_id = " + req.params.id;
+    var sqlLine = "UPDATE commande SET status = 1 WHERE commande_id = " + req.params.id;
     let prom = new Promise((resolve, reject) => {
         client.query(sqlLine, (err, res) => {
             if (err) {
@@ -194,6 +194,28 @@ app.get('/livreur/:id', (req, res) => {
         
   })
 })
+
+app.get('/livre/:id', (req, res) => {
+    var id_command = 0;
+    var sqlLine = "UPDATE commande SET status = 2 WHERE commande_id = " + req.params.id;
+    let prom = new Promise((resolve, reject) => {
+        client.query(sqlLine, (err, res) => {
+            if (err) {
+                console.log(err.stack);
+            } else {
+                console.log(sqlLine);
+                resolve(res);
+            }
+        })    
+    })
+    prom.then(() => {
+            console.log('coucou');
+            //res.render("/livreur");
+            res.send('<script>window.location.href="/livreur";</script>');
+        
+  })
+})
+
 
 app.post('/register', function (request, response) {
     var name = request.body.name;
