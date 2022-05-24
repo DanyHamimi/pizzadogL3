@@ -445,8 +445,12 @@
     </div>
     <script>
       let basketNUM = document.querySelector('#basketNUM');
-      basketNUM = 0;
+      console.log(getCookie("qtebasket"));
+      if (parseInt(getCookie("qtebasket")) > 0) {
+        basketNUM.innerHTML = getCookie("qtebasket");
+      }
       let amount;
+
       function changePrice(i) {
         var PizzaSize = document.getElementById("taille" + i);
         var valueSize = PizzaSize.options[PizzaSize.selectedIndex].value;
@@ -506,6 +510,7 @@
         let basketNUM = document.querySelector('#basketNUM');
         var AmountinBasket = document.getElementById("nombre" + i).value;
         var newN = parseInt(basketNUM.innerHTML) + parseInt(AmountinBasket);
+        document.cookie = "qtebasket=" + newN + ";secure";
         basketNUM.innerHTML = newN;
         let PizzaPrice = document.querySelector('#priceP' + i);
         let ValPrice = PizzaPrice.innerHTML;
