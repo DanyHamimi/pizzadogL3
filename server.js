@@ -42,6 +42,7 @@ let commande;
 
 let fin;
 
+
 client.query('Select * from Pizza', (err, res) => {
     if (err) {
         console.log(err.stack);
@@ -103,6 +104,9 @@ app.use(express.static(__dirname + '/public'));
 //app.use(bodyParser.urlencoded({ extended: true })); 
 
 app.get('/', (req, res) => {
+    if (isLogged(req)) {
+        livreur(res);
+    }
     console.log(toppingPizz);
     let prom = new Promise((resolve, reject) => {
         client.query('Select * from menu', (err, res) => {
@@ -140,25 +144,25 @@ app.get('/etat/:id', (req, res) => {
                 console.log(err.stack);
             } else {
                 console.log(sqlLine);
-                fin=res.rows;
+                fin = res.rows;
                 resolve(res);
             }
-        })    
+        })
     })
     prom.then(() => {
-            console.log('coucou');
-  })
-  var sqlLine2 = "Select * from commande_ligne where commande_id = " + req.params.id;
-  let prom2 = new Promise((resolve, reject) => {
-    client.query(sqlLine2, (err, res) => {
-        if (err) {
-            console.log(err.stack);
-        } else {
-            console.log(sqlLine2);
-            command_info=res.rows;
-            resolve(res);
-        }
-    })    
+        console.log('coucou');
+    })
+    var sqlLine2 = "Select * from commande_ligne where commande_id = " + req.params.id;
+    let prom2 = new Promise((resolve, reject) => {
+        client.query(sqlLine2, (err, res) => {
+            if (err) {
+                console.log(err.stack);
+            } else {
+                console.log(sqlLine2);
+                command_info = res.rows;
+                resolve(res);
+            }
+        })
     })
     prom2.then(() => {
         console.log('coucou');
@@ -168,10 +172,10 @@ app.get('/etat/:id', (req, res) => {
 })
 
 app.get('/etat', (req, res) => {
-    let pizza ;
+    let pizza;
     let boisson;
-    res.render("etat.ejs" , { fin: fin });
-    
+    res.render("etat.ejs", { fin: fin });
+
 })
 
 app.get('/basket', (req, res) => {
@@ -185,7 +189,7 @@ app.get('/basket', (req, res) => {
     res.render("basket.ejs", { basket: bisElmns });
 })
 
-function getCookiePers(req){
+function getCookiePers(req) {
     const elmns = [];
     elmns.push(req.cookies.basket);
     //console.log(elmns.join(''));
@@ -205,7 +209,7 @@ app.get('/order', (req, res) => {
     res.render("order.ejs", { basket: bisElmns });
 })
 
-function livreur(res){
+function livreur(res) {
     let prom = new Promise((resolve, reject) => {
         client.query('Select * from commande where status !=2', (err, res) => {
             if (err) {
@@ -224,7 +228,7 @@ function livreur(res){
 
 let test_pers;
 
-function get_id_commande(res){
+function get_id_commande(res) {
     let retur;
     let prom = new Promise((resolve, reject) => {
         client.query('Select MAX(commande_id) from commande', (err, res) => {
@@ -242,8 +246,19 @@ function get_id_commande(res){
     })
 }
 
+function isLogged(req) {
+    if (req.cookies.token != null) {
+        return true;
+    }
+}
+
 app.get('/livreur', (req, res) => {
-    livreur(res);
+    if (isLogged(req)) {
+        livreur(res);
+    }
+    else {
+        res.redirect('/login');
+    }
 })
 app.get('/livreur/:id', (req, res) => {
     var id_command = 0;
@@ -256,14 +271,14 @@ app.get('/livreur/:id', (req, res) => {
                 console.log(sqlLine);
                 resolve(res);
             }
-        })    
+        })
     })
     prom.then(() => {
-            console.log('coucou');
-            //res.render("/livreur");
-            res.send('<script>window.location.href="/livreur";</script>');
-        
-  })
+        console.log('coucou');
+        //res.render("/livreur");
+        res.send('<script>window.location.href="/livreur";</script>');
+
+    })
 })
 
 app.get('/livre/:id', (req, res) => {
@@ -277,67 +292,67 @@ app.get('/livre/:id', (req, res) => {
                 console.log(sqlLine);
                 resolve(res);
             }
-        })    
+        })
     })
     prom.then(() => {
-            console.log('coucou');
-            //res.render("/livreur");
-            res.send('<script>window.location.href="/livreur";</script>');
-        
-  })
+        console.log('coucou');
+        //res.render("/livreur");
+        res.send('<script>window.location.href="/livreur";</script>');
+
+    })
 })
 
-app.post('/orderConfirm', function (request, response){
+app.post('/orderConfirm', function (request, response) {
     let prom2 = new Promise((resolve, reject) => {
         client.query('Select MAX(commande_id) from commande', (err, resi) => {
             if (err) {
                 console.log(err.stack);
             } else {
                 console.log(resi.rows[0].max);
-        var sqlLine = "INSERT INTO commande (name_client, adresse, status, prix) VALUES ('" + request.body.Nom + "','" + request.body.Adresse +"','"+0+"', '"+ 10 +"')";
-        let danydan = getCookiePers(request);
-        let prom = new Promise((resolve, reject) => {
-            client.query(sqlLine, (err, res) => {
-                if (err) {
-                    console.log(err.stack);
-                } else {
-                    console.log(sqlLine);
-                    resolve(res);
-                }
-            })    
-        })
-        prom.then(() => {
-            console.log('coucou');
-            for (var i=0; i < danydan.length-1; i=i+8) {
-                var newsqlLine = "INSERT INTO commande_ligne values ('" + danydan[i+1] + "','" + danydan[i+7] + "','" + (resi.rows[0].max+1)  + "','" + danydan[i+3] + "','" + danydan[i+4] + "','" + danydan[i+5] + "')";
-                let prom3 = new Promise((resolve, reject) => {
-                    client.query(newsqlLine, (err, res) => {
+                var sqlLine = "INSERT INTO commande (name_client, adresse, status, prix) VALUES ('" + request.body.Nom + "','" + request.body.Adresse + "','" + 0 + "', '" + 10 + "')";
+                let danydan = getCookiePers(request);
+                let prom = new Promise((resolve, reject) => {
+                    client.query(sqlLine, (err, res) => {
                         if (err) {
                             console.log(err.stack);
                         } else {
-                            console.log(newsqlLine);
+                            console.log(sqlLine);
                             resolve(res);
                         }
-                    })    
+                    })
                 })
-            prom3.then(() => {
+                prom.then(() => {
                     console.log('coucou');
-            })
-        }
-            response.send('<script>window.location.href="/etat/'+(resi.rows[0].max+1)+'";</script>');
-        })
-                
+                    for (var i = 0; i < danydan.length - 1; i = i + 8) {
+                        var newsqlLine = "INSERT INTO commande_ligne values ('" + danydan[i + 1] + "','" + danydan[i + 7] + "','" + (resi.rows[0].max + 1) + "','" + danydan[i + 3] + "','" + danydan[i + 4] + "','" + danydan[i + 5] + "')";
+                        let prom3 = new Promise((resolve, reject) => {
+                            client.query(newsqlLine, (err, res) => {
+                                if (err) {
+                                    console.log(err.stack);
+                                } else {
+                                    console.log(newsqlLine);
+                                    resolve(res);
+                                }
+                            })
+                        })
+                        prom3.then(() => {
+                            console.log('coucou');
+                        })
+                    }
+                    response.send('<script>window.location.href="/etat/' + (resi.rows[0].max + 1) + '";</script>');
+                })
+
                 resolve(resi.rows[0].max);
 
             }
-            
+
         })
     })
     prom2.then((val) => {
         console.log("ici");
     })
     //get_id_commande(response);
-    
+
 });
 
 app.post('/register', function (request, response) {

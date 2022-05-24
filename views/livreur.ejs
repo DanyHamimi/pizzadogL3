@@ -1,3 +1,6 @@
+<!DOCTYPE html>
+<title>PizzaDog</title>
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -33,22 +36,20 @@
         <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="/login">Se connecter</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="/register">S'inscrire</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/basket" class="nav-link"><img src="img/basket.png" width="27px"> <span
-                            class="badge badge-secondary" style="background-color: orange;">0</span></a>
+                    <a class="nav-link" href="/" onclick="disconnectU()">Se déconnecter</a>
                 </li>
             </ul>
         </div>
     </nav>
 </head>
+<script>
+    function disconnectU() {
+        javascript: (function () { document.cookie.split(";").forEach(function (c) { document.cookie = c.replace(/^ +/, "").replace(/=.*/, "=;expires=" + new Date().toUTCString() + ";path=/"); }); })();
+        location.reload();
+    }
+</script>
 
 <body>
-    <!--table that displays all piuzza commands-->
     <div class="container">
         <div class="row">
             <div class="col-md-12">
